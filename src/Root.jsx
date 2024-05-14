@@ -7,7 +7,9 @@ function Root() {
   return (
     <>
         <Header></Header>
-        <Outlet></Outlet>
+            <div className='min-h-[70vh]'>
+                <Outlet></Outlet>
+            </div>
         <Footer></Footer>
     </>
   )
