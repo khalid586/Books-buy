@@ -13,6 +13,7 @@ function Root() {
         <Footer></Footer>
     </>
   )
+  
 }
 
 export default Root
