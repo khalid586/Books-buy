@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../Providers/AuthProvider'
 import Spinner from './Spinner';
@@ -14,6 +14,15 @@ function Navbar() {
 
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const { user, loading } = useContext(AuthContext);
+    const [url,setUrl]= useState('');
+
+    useEffect(()=>{
+        setUrl(user?.photoURL);
+    },[user])
+
+    function defaultImage(){
+        setUrl('https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1715904000&semt=ais_user')
+    }
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -23,11 +32,12 @@ function Navbar() {
         setDropdownOpen(false);
     };
 
+
     return (
     <div className="navbar bg-base-100">
         <div className="navbar-start">
             <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                <div tabIndex={0} role="button" className="lg:hidden mr-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </div>
                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -40,7 +50,7 @@ function Navbar() {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
+            <ul className="menu menu-horizontal ">
                 {list}
             </ul>
         </div>
@@ -62,7 +72,7 @@ function Navbar() {
                     user ? 
                     <div className={`dropdown dropdown-bottom dropdown-end ${isDropdownOpen ? 'open' : ''}`}>
                         <div tabIndex={0} role="button" className="mx-2" onClick={toggleDropdown}>
-                            <img src={user.photoURL} width={30} className='border-green-500 border-4 rounded-full' alt="User" />
+                            <img src={url} onError={defaultImage} width={30} className='border-green-500 border-4 rounded-full' alt="User" />
                         </div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/profile" onClick={closeDropdown}>Profile</Link></li>

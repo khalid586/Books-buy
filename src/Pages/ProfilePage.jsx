@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,6 +11,17 @@ import { Helmet } from 'react-helmet';
 function ProfilePage() {
     const {user,loading,logOut} = useContext(AuthContext);
     const [imgAvailable,setImgAvailable] = useState(true);
+    const [url,setUrl]= useState('');
+    const [invalidImage,setInvalidImage] = useState(false);
+
+    useEffect(()=>{
+        setUrl(user?.photoURL);
+    },[user])
+
+    function defaultImage(){
+        setInvalidImage(true);
+        setUrl('https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1715904000&semt=ais_user')
+    }
 
     function handleError(){
         setImgAvailable(false);
@@ -37,7 +48,13 @@ function ProfilePage() {
                             <div className='flex justify-center'>
                                 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                         <div class="flex flex-col items-center py-10 pt-14">
-                                            <img class="w-24 h-24 mb-3 rounded-full border-4 border-green-500 shadow-lg" src={user.photoURL} alt="Bonnie image"/>
+                                            <p className='relative'>
+                                                <img onError={defaultImage} class="bg-white w-24  h-24 mb-3 rounded-full border-4 border-green-500 shadow-lg" src={url} alt="User"/>
+                                                {
+                                                   invalidImage && <sup className='absolute w-5/6 font-semibold text-xs text-white bg-red-500  p-1  rounded-full mx-2 '>invalid Url </sup>
+                                                }
+                                            </p>
+                                            
                                             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.displayName}</h5>
                                             <span class="text-sm text-gray-500 dark:text-gray-400">{user.email}</span>
                                             <div class="flex">
