@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Providers/AuthProvider';
+import Spinner from '../Components/Spinner';
 
 function AddBook() {
     const [url,setUrl] = useState('https://i.ibb.co/r0d6F7Y/pexels-photo-3881104.jpg');
     const [error,setError] = useState(false);
-    const {user} = useContext(AuthContext);
+    const {user,loading} = useContext(AuthContext);
 
 
     function checkUrl(e){
@@ -23,69 +24,73 @@ function AddBook() {
     }
   return (
     <div className='flex justify-center py-4'>
+        {
+            loading? <Spinner></Spinner>
+            :
+            <form onSubmit={handleSubmit} className="min-w-80 mx-auto ">
+                <h5 className='text-center my-4 mb-8 text-green-500 text-xl font-bold flex justify-center items-center gap-1'>
+                    <img className='' src="book-solid.svg" width={25} alt="" />
+                    Book Details
+                </h5>
 
-        <form onSubmit={handleSubmit} className="min-w-80 mx-auto ">
-            <h5 className='text-center my-4 mb-8 text-green-500 text-xl font-bold flex justify-center items-center gap-1'>
-                <img className='' src="book-solid.svg" width={25} alt="" />
-                 Book Details
-            </h5>
-
-            <img className='hidden' src={url} alt="alternate image" onError={() => setError(true)} />
-            <div className="mb-5 flex gap-2">
-                <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Book name</label>
-                    <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: Psychology of Money" required />
-                </div>
-                
-                <div className="">
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Book Image Url</label>
-                    <input onChange={checkUrl} type="text" name = 'photoUrl' id="photoUrl" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: https://picture.png"  required />
-                    <div className='h-5'>                            
-                        { error && <p className='text-xs text-red-500'>Invalid url</p>}
+                <img className='hidden' src={url} alt="alternate image" onError={() => setError(true)} />
+                <div className="mb-5 flex gap-2">
+                    <div>
+                        <label className="block mb-2 text-sm font-medium text-gray-900">Book name</label>
+                        <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: Psychology of Money" required />
+                    </div>
+                    
+                    <div className="">
+                        <label className="block mb-2 text-sm font-medium text-gray-900">Book Image Url</label>
+                        <input onChange={checkUrl} type="text" name = 'photoUrl' id="photoUrl" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: https://picture.png"  required />
+                        <div className='h-5'>                            
+                            { error && <p className='text-xs text-red-500'>Invalid url</p>}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className='flex gap-2'>
+                <div className='flex gap-2'>
+                    <div className="mb-5">
+                        <label className="block mb-2 text-sm font-medium text-gray-900">Author</label>
+                        <input type="text" id="Author" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: John Doe" required />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm font-medium text-gray-900">Available Copies</label>
+                        <input type="number" name = 'Available' id="Available" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: 10"  required />
+                    </div>
+                </div>
+
+
                 <div className="mb-5">
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Author</label>
-                    <input type="text" id="Author" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: John Doe" required />
-                </div>
-                <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Available Copies</label>
-                    <input type="number" name = 'Available' id="Available" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: 10"  required />
-                </div>
-            </div>
-
-
-            <div className="mb-5">
- 
-                <div className="">
-                <label htmlFor="rating" className="block mb-2 text-sm font-medium text-gray-900">Rating</label>
-                    <input type="number" name = 'rating' id="rating" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: 4" min="1" max="5" required />
-                </div>
-            </div>
-
-            <div className="mb-5 ">
-                <label className="block mb-2 text-sm font-medium text-gray-900">Genre</label>
-                <div className="flex flex-wrap gap-4">
-                <div className="dropdown">
-                    <select 
-                        name="genre"
-                        className="form-select mt-1 block w-full"
-                    >
-                        <option value="" disabled>Select a season</option>
-                        <option value="Fiction">Fiction</option>
-                        <option value="Non fiction">Non fiction</option>
-                    </select>
+    
+                    <div className="">
+                    <label htmlFor="rating" className="block mb-2 text-sm font-medium text-gray-900">Rating</label>
+                        <input type="number" name = 'rating' id="rating" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: 4" min="1" max="5" required />
+                    </div>
                 </div>
 
+                <div className="mb-5 ">
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Genre</label>
+                    <div className="flex flex-wrap gap-4">
+                    <div className="dropdown">
+                        <select 
+                            name="genre"
+                            className="form-select mt-1 block w-full"
+                        >
+                            <option value="" disabled>Select a season</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Non fiction">Non fiction</option>
+                        </select>
+                    </div>
+
+                    </div>
                 </div>
-            </div>
 
 
-            <button type="submit" className="mt-2 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Book</button>
+                <button type="submit" className="mt-2 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Book</button>
 
-        </form> 
+            </form> 
+        }
+
     </div>
   )
 }
