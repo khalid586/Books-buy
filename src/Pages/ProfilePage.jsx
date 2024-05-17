@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
-// import { Helet } from 'react-helmet-async';
 
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../Providers/AuthProvider';
 import Spinner from '../Components/Spinner';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -25,16 +25,15 @@ function ProfilePage() {
 
     return(
         <div>
-        {/* <Helmet>
-            <title>Tourist | User profile</title>
-        </Helmet> */}
+        <Helmet>
+            <title>Books Buy | User profile</title>
+        </Helmet>
         {
             loading ? <Spinner></Spinner> : 
             <div >
                 {
                     user ? 
                     <div className=' m-4 rounded-2xl text-center my-8'>
-                            <p className='my-2 text-2xl font-bold'>Welcome!!!</p>
                             <div className='flex justify-center'>
                                 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                         <div class="flex flex-col items-center py-10 pt-14">

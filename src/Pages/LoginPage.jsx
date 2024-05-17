@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Providers/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import app from '../Firebase/firebase.config';
@@ -12,10 +12,11 @@ import { FaGithub } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { Helmet } from 'react-helmet';
+import Spinner from '../Components/Spinner';
 
 
 function LoginPage() {
-    const {signIn,setLoading} = useContext(AuthContext);
+    const {signIn,setLoading,user,loading} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const [msg,setMsg] = useState('');
@@ -81,6 +82,15 @@ function LoginPage() {
 
     return (
         <>
+            {    user?
+                <>
+                    <Navigate to = '/profile'></Navigate>
+                </>
+                :
+        
+            loading?  <Spinner></Spinner>
+            :
+            <>
             <Helmet>
                 <title>
                     Tourist | Login
@@ -124,6 +134,9 @@ function LoginPage() {
 
             <ToastContainer></ToastContainer>
         </>
+        }
+        </>
+
     )
 }
 

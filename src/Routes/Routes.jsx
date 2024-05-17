@@ -5,6 +5,7 @@ import Detailspage from '../Pages/Detailspage'
 import LoginPage from '../Pages/LoginPage'
 import RegisterPage from '../Pages/RegisterPage'
 import ProfilePage from "../Pages/ProfilePage";
+import RentedBooks from "../Pages/RentedBooks";
 
 const  router = createBrowserRouter([
     {
@@ -31,6 +32,11 @@ const  router = createBrowserRouter([
         {
           path:'/profile',
           element:<ProfilePage></ProfilePage>
+        },
+        {
+          path:'/rented_books',
+          element:<RentedBooks></RentedBooks>,
+          
         },
       ]
     },

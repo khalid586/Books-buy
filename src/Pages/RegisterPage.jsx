@@ -1,6 +1,6 @@
 
 import React, { useContext, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { updateProfile } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -8,10 +8,11 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { AuthContext } from '../Providers/AuthProvider';
 import { Helmet } from 'react-helmet';
+import Spinner from '../Components/Spinner';
 
 
 function RegisterPage() {
-    const {createUser,setLoading} = useContext(AuthContext);
+    const {createUser,setLoading,user,loading} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const [msg,setMsg] = useState('');
@@ -55,6 +56,16 @@ function RegisterPage() {
             .catch(error => {toast.error(error.message);setLoading(false)})
     }
     return (
+        <>
+            {    user?
+                <>
+                    <Navigate to = '/profile'></Navigate>
+                </>
+                :
+        
+            loading? <Spinner></Spinner>
+            :
+            
         <>
             <Helmet>
                 <title>Books Buy | Register</title>
@@ -100,6 +111,8 @@ function RegisterPage() {
             </form>
             <ToastContainer></ToastContainer>
         </>
+    }
+    </>
     )
 }
 
