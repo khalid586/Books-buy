@@ -123,7 +123,7 @@ function LoginPage() {
                     </div>
                 </div>
 
-                <p className='my-4 font-semibold text-gray-400'>Don't have an account? <Link state={location.state} className='text-black underline' to = '/register'>Register</Link></p>
+                <p className='my-4 font-semibold text-gray-400'>Don't have an account? <Link state={location?.state} className='text-black underline' to = '/register'>Register</Link></p>
                 <button type="submit" className=" bg-green-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 text-white">Login</button>
             
             </form>
