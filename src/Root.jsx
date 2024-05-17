@@ -1,17 +1,18 @@
 import React from 'react'
-import Header from './Components/Header'
 import Footer from './Components/Footer'
 import { Outlet } from 'react-router-dom'
+import Banner from './Components/Banner'
+import Navbar from './Components/Navbar'
 
 function Root() {
   return (
-    <>
-        <Header></Header>
+    <div className='mx-2 font-custom'>
+        <Navbar></Navbar>
             <div className='min-h-[70vh]'>
                 <Outlet></Outlet>
             </div>
         <Footer></Footer>
-    </>
+    </div>
   )
   
 }

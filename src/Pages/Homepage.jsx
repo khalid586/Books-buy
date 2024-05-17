@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Banner from '../Components/Banner'
 
 function Homepage() {
   return (
     <div>
-        <Link to = '/details'>See datails</Link>
+      <Banner></Banner>
+        <Link to = '/details'>See details</Link> 
     </div>
   )
 }
