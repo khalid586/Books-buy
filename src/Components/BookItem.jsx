@@ -11,9 +11,9 @@ function BookItem({ book, update , handleUpdate , handleDelete}) {
 
     return (
         <div className="card bg-base-100 shadow-xl">
-            <figure className='w-full max-h-60'><img src={photoUrl} alt="Book Cover" /></figure>
+            <figure className='w-full max-h-56'><img src={photoUrl} alt="Book Cover" /></figure>
             <div className="card-body">
-                <h2 className="text-2xl font-bold mt-2">
+                <h2 className="text-xl font-extrabold mt-2">
                     {name}
                     <sup className={`text-xs ml-1 px-1 py-0.5 rounded-full border-2 ${copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
                         {copies > 0 ? "In stock" : "Out of stock"}
