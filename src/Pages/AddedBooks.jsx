@@ -50,9 +50,16 @@ function AddedBooks() {
         
     }
     function handleDelete(bookId){
+        setWait(true);
         axios.delete(`http://localhost:5007/delete/${bookId}`)
         .then(res => res.data)
-        .then(data => console.log(data))
+        .then(data => {
+            const {deletedCount} = data;
+            if(deletedCount){
+                toast.success('Deleted Successfully!');
+                setWait(false);
+            }
+        })
         .catch(err => console.error(err))
     }
 
