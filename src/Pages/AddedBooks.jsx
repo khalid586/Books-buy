@@ -15,24 +15,28 @@ function AddedBooks() {
                 axios.get(`http://localhost:5007/added_books/${user.email}`)
                 .then(res => res.data)
                 .then(data => {setBooks(data);setWait(false);})
-            },[])
+            },[wait])
         }
     }
+
+    function handleUpdate(){
+
+    }
+
     return (
         <div>
-        {
-            loading || wait? <Spinner></Spinner>
-            :
-            <div className='text-center'>
-                <p className='font-bold mt-6 text-xl'>You have added the following books</p> <br />
+            {
+                loading || wait? <Spinner></Spinner>
+                :
+                <div className='text-center'>
+                    <p className='font-bold mt-6 text-xl'>You have added the following books</p> <br />
+                </div>
+            }         
+            <div className='mx-4 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+            {
+                books.map(book=><BookItem book = {book} update = 'true'></BookItem>)
+            }
             </div>
-        }         
-        
-        <div className='mx-4 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
-        {
-            books.map(book=><BookItem book = {book} update = 'true'></BookItem>)
-        }
-        </div>
         </div>
     )
 }

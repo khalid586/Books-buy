@@ -28,8 +28,20 @@ function BookItem({book,update}){
                             {
                                 update && 
                                 <div className='gap-4 flex font-bold'>
-                                    <button className='px-4 py-2 rounded-full bg-green-100 text-green-500'>Update</button>
-                                    <button className='px-4 py-2 rounded-full bg-red-100 text-red-600'>Delete</button>
+                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                    <dialog id="my_modal_1" className="modal">
+                                    <div className="modal-box">
+
+                                        <div className="modal-action">
+                                        <form method="dialog">
+                                            
+                                            <button type='submit' className="btn">Update</button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                    </dialog>
+                                    <button onClick={()=>document.getElementById('my_modal_1').showModal()} className='px-4 py-2 rounded-full bg-green-100 text-green-500'>Update</button>
+                                    <button className='px-4  rounded-full bg-red-100 text-red-600'>Delete</button>
                                 </div>
                             }
                         </div>

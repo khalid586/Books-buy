@@ -6,9 +6,9 @@ import Navbar from './Components/Navbar'
 
 function Root() {
   return (
-    <div className='mx-2 font-custom'>
+    <div className='font-custom'>
         <Navbar></Navbar>
-            <div className='min-h-[70vh]'>
+            <div className='min-h-[90vh]'>
                 <Outlet></Outlet>
             </div>
         <Footer></Footer>

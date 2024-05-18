@@ -109,7 +109,7 @@ function AddBook() {
                             name="genre"
                             className="form-select mt-1 block w-full"
                         >
-                            <option value="" disabled>Select a season</option>
+                            <option value="" disabled>Select a genre</option>
                             <option value="Fiction">Fiction</option>
                             <option value="Non fiction">Non fiction</option>
                         </select>

@@ -40,10 +40,10 @@ export default {
           backgroundColor: 'red',
           transition: 'background-color 0.3s ease',
         },
-        '.btn:hover': {
-          backgroundColor: '#357cd6',
-          color:'white'
-        },
+        // '.btn:hover': {
+        //   backgroundColor: '#357cd6',
+        //   color:'white'
+        // },
       };
 
       addUtilities(newUtilities, ['responsive', 'hover']);
