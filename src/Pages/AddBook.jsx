@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Providers/AuthProvider';
 import Spinner from '../Components/Spinner';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
+
 
 function AddBook() {
     const [url,setUrl] = useState('https://i.ibb.co/r0d6F7Y/pexels-photo-3881104.jpg');
@@ -30,6 +32,10 @@ function AddBook() {
         const data = {
             name,genre,photoUrl,author,copies,rating,uploaderEmail,rentedBy
         }
+
+        axios.post('http://localhost:5007/add_book',data)
+        .then(res => console.log(res.data))
+        .catch(error => console.error(error))
 
         console.log(data);
         form.reset();
