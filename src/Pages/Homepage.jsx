@@ -15,7 +15,7 @@ function Books({book ,key,user}){
 } = book;
 
   return(
-      <Link key={_id} to = {`details/${_id}`} className=''>
+      <Link to = {`details/${_id}`} className=''>
           <img className='rounded-xl shadow-lg duration-500 ' style={{ height: '300px' , width:'100vh'}} src={photoUrl} alt='place.img' 
           onError={(e) => {
               e.target.src = 'https://i.ibb.co/MDBxfMK/pexels-photo-1450360.jpg'; 
@@ -26,7 +26,7 @@ function Books({book ,key,user}){
           <div className='mx-2 my-1'>
               <div className='flex items-center justify-between'>                            
                   <p className='font-semibold flex gap-1 items-center text-sm'><FaBook className='text-red-500'></FaBook>{name}</p>
-                  <div className={`text-xs m-1 py-1 px-2 text-white rounded-full font-bold ${copies > 0 ? "bg-green-400":"bg-red-500"}`}>{copies > 0 ? 'In Stock':'Out of Stock'}</div>
+                  <div className={`text-xs m-1 py-1 px-2 text-white rounded-full font-bold ${copies > 0 ? "bg-green-400":"bg-red-500"}`}>{copies > 0 ? 'In stock':'Out of stock'}</div>
               </div>
               <div className='flex items-center justify-between'>
                   <p className='flex gap-1 items-center text-xs'><FaRegPenToSquare className='text-green-400'></FaRegPenToSquare>{author}</p>
