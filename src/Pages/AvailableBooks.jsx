@@ -6,10 +6,10 @@ import BookItem from '../Components/BookItem';
 function AvailableBooks() {
     const books = useLoaderData() || [];
     return (
-        <div>
+        <div className='m-4 grid grid-cols-4 gap-3'>
         {
             books.map(book => 
-                <div className='m-4 gap-2 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
+                <div className=''>
                     <BookItem  book = {book} index = {book._id}></BookItem>
                     
                 </div>

@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 
 function Detailspage() {
+  const book = useLoaderData();
+
   return (
     <div>
-        <Link to = '/'>Back to homepage</Link>
+        <p>{book.name}</p>
     </div>
   )
 }

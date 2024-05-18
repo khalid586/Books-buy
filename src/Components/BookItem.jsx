@@ -7,19 +7,19 @@ function BookItem({book}){
     } = book;
     return(
         <div className="card  bg-base-100 shadow-xl">
-                    <figure className='w-full max-h-72'><img src={photoUrl} alt="Shoes" /></figure>
+                    <figure className='w-full max-h-60'><img src={photoUrl} alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="text-3xl font-bold my-2">
+                        <h2 className="text-2xl font-bold mt-2">
                         {name}<sup className='badge text-green-500'>Available</sup>
                         </h2>
-                        <div>
+                        <div className='mb-3 text-sm font-bold text-gray-500'>
                         {
                             author
                         }
                         </div>
                         <div className='flex justify-between items-center'>
                            <p className='font-medium'>Avaiable Copies: <span className='font-bold'> {copies}</span></p>
-                        <div className={`text-white px-2 py-0.5 rounded-full text-sm font-bold ${genre =='Fiction' ? 'bg-red-600':'text-blue-600'}`}>{genre}</div> 
+                        <div className={`px-3 py-2 rounded-full text-sm font-bold ${genre =='Fiction' ? 'bg-violet-100 text-violet-700':'bg-emerald-100 text-emerald-500'}`}>{genre}</div> 
                         </div>
                         <div className="card-actions justify-end">
                         </div>

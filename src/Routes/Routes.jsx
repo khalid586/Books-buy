@@ -26,8 +26,9 @@ const  router = createBrowserRouter([
           
         },
         {
-          path:'/details',
-          element:<ProtectedRoute> <Detailspage></Detailspage></ProtectedRoute>
+          path:'/details/:id',
+          element:<ProtectedRoute> <Detailspage></Detailspage></ProtectedRoute>,
+          loader:({params})=>axios.get(`http://localhost:5007/details/${params.id}`).then(res => res.data)
         },
         {
           path:'/login',
