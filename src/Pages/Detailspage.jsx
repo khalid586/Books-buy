@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useLoaderData } from 'react-router-dom'
+import { Link, useLoaderData, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Providers/AuthProvider';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import Spinner from '../Components/Spinner';
@@ -11,6 +11,7 @@ function Detailspage() {
   const {user,loading} = useContext(AuthContext);
   const [reload,setReload] = useState(false);
   const [rented,setRented] = useState(false);
+  const navigate = useNavigate();
 
   const [book,setBook] = useState(data);
   const {
@@ -40,6 +41,12 @@ function Detailspage() {
     })
   }
 
+  function NAVIGATE(){
+    setTimeout(()=>{
+      navigate('/rented_books')
+    },1500)
+  }
+
   function handleRent(){
 
     const info = {
@@ -47,7 +54,11 @@ function Detailspage() {
     }
     axios.patch(`http://localhost:5007/rent/${_id}`,info)
     .then(res => res.data)
-    .then(data => {console.log(data); toast.success('Successfully rented'); Fetch();})
+    .then(data => {
+      toast.success('Successfully rented');
+       Fetch();
+       NAVIGATE();
+    })
     .catch(err => console.log(err))
   }
 
@@ -57,7 +68,11 @@ function Detailspage() {
     }
     axios.patch(`http://localhost:5007/return/${_id}`,info)
     .then(res => res.data)
-    .then(data => {console.log(data); toast.success('Successfully returned'); Fetch();})
+    .then(data => {
+      toast.success('Successfully returned'); 
+      Fetch();
+      NAVIGATE();
+    })
     .catch(err => console.log(err))
   }
 
