@@ -3,12 +3,16 @@ import { AuthContext } from '../Providers/AuthProvider';
 import Spinner from '../Components/Spinner';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 function AddBook() {
     const [url,setUrl] = useState('https://i.ibb.co/r0d6F7Y/pexels-photo-3881104.jpg');
     const [error,setError] = useState(false);
     const {user,loading} = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
 
     function checkUrl(e){
@@ -24,20 +28,28 @@ function AddBook() {
         const photoUrl = form.photoUrl.value;
         const genre = form.genre.value;
         const author = form.author.value;
-        const copies = form.copies.value;
-        const rating = form.rating.value;
+        const copies = parseInt(form.copies.value);
+        const rating = parseInt(form.rating.value);
         const uploaderEmail = user?.email;
         const rentedBy = [];
+
 
         const data = {
             name,genre,photoUrl,author,copies,rating,uploaderEmail,rentedBy
         }
 
         axios.post('http://localhost:5007/add_book',data)
-        .then(res => console.log(res.data))
+        .then(res => res.data)
+        .then((response)=>{
+            if(response.acknowledged){
+                toast.success('Book added successfully')
+                setTimeout(()=>{
+                    navigate('/')
+                },1500)
+            }
+        })
         .catch(error => console.error(error))
 
-        console.log(data);
         form.reset();
     }
   return (
@@ -111,7 +123,7 @@ function AddBook() {
 
             </form> 
         }
-
+    <ToastContainer></ToastContainer>
     </div>
   )
 }

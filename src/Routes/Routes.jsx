@@ -9,6 +9,9 @@ import RentedBooks from "../Pages/RentedBooks";
 import AddBook from "../Pages/AddBook";
 import ProtectedRoute from "./ProtectedRoute";
 import ErrorPage from "../Pages/ErrorPage";
+import axios from "axios";
+import AvailableBooks from "../Pages/AvailableBooks";
+import AddedBooks from "../Pages/AddedBooks";
 
 const  router = createBrowserRouter([
     {
@@ -18,7 +21,9 @@ const  router = createBrowserRouter([
       children:[
         {
           index:true,
-          element:<Homepage></Homepage>
+          element:<Homepage></Homepage>,
+          loader:() => axios.get('http://localhost:5007/books').then(res => res.data)
+          
         },
         {
           path:'/details',
@@ -39,12 +44,19 @@ const  router = createBrowserRouter([
         {
           path:'/rented_books',
           element:<ProtectedRoute><RentedBooks></RentedBooks></ProtectedRoute> ,
-          
+        },
+        {
+          path:'/added_books',
+          element:<ProtectedRoute><AddedBooks></AddedBooks></ProtectedRoute> ,
         },
         {
           path:'/add_book',
           element:<ProtectedRoute><AddBook></AddBook></ProtectedRoute> 
-          
+        },
+        {
+          path:'/available',
+          element:<ProtectedRoute><AvailableBooks></AvailableBooks></ProtectedRoute> ,
+          loader:()=> axios.get('http://localhost:5007/available').then(res => res.data).catch(err => console.error(err))
         },
       ]
     },
