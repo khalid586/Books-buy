@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Providers/AuthProvider';
 import Spinner from '../Components/Spinner';
+import { Helmet } from 'react-helmet';
 
 function AddBook() {
     const [url,setUrl] = useState('https://i.ibb.co/r0d6F7Y/pexels-photo-3881104.jpg');
@@ -18,12 +19,26 @@ function AddBook() {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
+        const photoUrl = form.photoUrl.value;
         const genre = form.genre.value;
-        console.log(name,genre);
+        const author = form.author.value;
+        const copies = form.copies.value;
+        const rating = form.rating.value;
+        const uploaderEmail = user?.email;
+        const rentedBy = [];
+
+        const data = {
+            name,genre,photoUrl,author,copies,rating,uploaderEmail,rentedBy
+        }
+
+        console.log(data);
         form.reset();
     }
   return (
     <div className='flex justify-center py-4'>
+        <Helmet>
+            <title>Books Buy | Add Book</title>
+        </Helmet>
         {
             loading? <Spinner></Spinner>
             :
@@ -51,11 +66,11 @@ function AddBook() {
                 <div className='flex gap-2'>
                     <div className="mb-5">
                         <label className="block mb-2 text-sm font-medium text-gray-900">Author</label>
-                        <input type="text" id="Author" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: John Doe" required />
+                        <input type="text" id="author" name = "author" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: John Doe" required />
                     </div>
                     <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900">Available Copies</label>
-                        <input type="number" name = 'Available' id="Available" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: 10"  required />
+                        <input type="number" name = 'copies' id="copies" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Ex: 10"  required />
                     </div>
                 </div>
 

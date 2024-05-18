@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Providers/AuthProvider'
 import Spinner from '../Components/Spinner';
+import { Helmet } from 'react-helmet';
 
 function RentedBooks() {
     const {user,loading} = useContext(AuthContext);
@@ -11,6 +12,9 @@ function RentedBooks() {
     },[])
     return (
         <div>
+        <Helmet>
+            <title>Books Buy | Rented Books</title>
+        </Helmet>
         {
             pageloading?<Spinner></Spinner>
             :

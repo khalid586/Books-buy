@@ -51,7 +51,7 @@ function ProfilePage() {
                                             <p className='relative'>
                                                 <img onError={defaultImage} class="bg-white w-24  h-24 mb-3 rounded-full border-4 border-green-500 shadow-lg" src={url} alt="User"/>
                                                 {
-                                                   invalidImage && <sup className='absolute w-5/6 font-semibold text-xs text-white bg-red-500  p-1  rounded-full mx-2 '>invalid Url </sup>
+                                                   invalidImage && <sup className='absolute w-5/6 font-semibold text-xs text-white bg-red-500  p-1  rounded-full mx-2 '>Invalid URL </sup>
                                                 }
                                             </p>
                                             
