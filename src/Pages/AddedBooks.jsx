@@ -4,6 +4,8 @@ import Spinner from '../Components/Spinner';
 import axios from 'axios';
 import BookItem from '../Components/BookItem';
 import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+
 
 function AddedBooks() {
     const {user,loading} = useContext(AuthContext);
@@ -50,17 +52,35 @@ function AddedBooks() {
         
     }
     function handleDelete(bookId){
-        setWait(true);
-        axios.delete(`http://localhost:5007/delete/${bookId}`)
-        .then(res => res.data)
-        .then(data => {
-            const {deletedCount} = data;
-            if(deletedCount){
-                toast.success('Deleted Successfully!');
-                setWait(false);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                setWait(true);
+                axios.delete(`http://localhost:5007/delete/${bookId}`)
+                .then(res => res.data)
+                .then(data => {
+                    const {deletedCount} = data;
+                    if(deletedCount){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Deleted Successfully!",
+                            icon: "success"
+                        });
+
+                        setWait(false);
+                    }
+                })
+                .catch(err => console.error(err))
             }
-        })
-        .catch(err => console.error(err))
+          });
+        
     }
 
     return (
