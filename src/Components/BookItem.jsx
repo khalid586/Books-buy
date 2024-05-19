@@ -2,6 +2,7 @@ import React from 'react'
 import { FaPenFancy, FaRegArrowAltCircleRight, FaStar } from 'react-icons/fa';
 import { VscGraph } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
+import truncate from '../Utils/Truncate';
 
 function BookItem({ book, update , rent , handleUpdate , handleDelete}) {
     const {
@@ -15,7 +16,7 @@ function BookItem({ book, update , rent , handleUpdate , handleDelete}) {
             <figure className='w-full h-56'><img src={photoUrl} alt="Book Cover" /></figure>
             <div className="card-body">
                 <h2 className="font-extrabold mt-2">
-                    {name}
+                    {truncate(name,20)}
                     {
                         !rent &&
                         <sup className={`font-bold text-xs ml-1 px-1 py-0.5 rounded-full border-2 ${copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
@@ -24,7 +25,7 @@ function BookItem({ book, update , rent , handleUpdate , handleDelete}) {
                     }
                 </h2>
                 <div className='flex gap-1 items-center mb-3 text-sm font-bold text-gray-500'>
-                <FaPenFancy className='text-red-600 text-lg'></FaPenFancy> {author}
+                <FaPenFancy className='text-red-600 text-lg'></FaPenFancy> {truncate(author,20)}
                 </div>
                 <div className='flex justify-between items-center'>
                     <p className='font-medium flex items-center gap-0.5'>

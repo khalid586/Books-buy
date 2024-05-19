@@ -9,6 +9,9 @@ import { AuthContext } from '../Providers/AuthProvider';
 import Spinner from '../Components/Spinner';
 import { MdDriveFolderUpload } from 'react-icons/md';
 import axios from 'axios';
+import truncate from '../Utils/Truncate';
+
+
 
 function Books({book ,key,user}){
     const  {
@@ -36,7 +39,7 @@ function Books({book ,key,user}){
           </img>
           <div className='mx-2 my-1'>
               <div className='flex items-center justify-between'>                            
-                  <p className='font-semibold text-black flex gap-1 items-center text-sm'><FaBook className='text-violet-500'></FaBook>{name}</p>
+                  <p className='font-semibold text-black flex gap-1 items-center text-sm'><FaBook className='text-violet-500'></FaBook>{truncate(name,30)}</p>
                   <div className='flex items-center gap-0.5'>                    
                     <div className={`px-2 py-1 rounded-full text-xs font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
                           {genre}
@@ -45,7 +48,7 @@ function Books({book ,key,user}){
                   </div>
               </div>
               <div className='flex items-center justify-between'>
-                  <p className='flex gap-1 items-center text-xs font-bold text-gray-500'><FaRegPenToSquare className='text-green-400'></FaRegPenToSquare>{author}</p>
+                  <p className='flex gap-1 items-center text-xs font-bold text-gray-500'><FaRegPenToSquare className='text-green-400'></FaRegPenToSquare>{truncate(author,20)}</p>
                   { user?.email == uploaderEmail && <p className='text-xs text-blue-600 flex gap-1 items-center font-bold'><MdDriveFolderUpload className='text-violet-500 text-lg'></MdDriveFolderUpload>You added</p>}
                   { rented && 
                       <span className='text-red-500'>
