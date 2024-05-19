@@ -21,9 +21,7 @@ const  router = createBrowserRouter([
       children:[
         {
           index:true,
-          element:<Homepage></Homepage>,
-          loader:() => axios.get('https://b9a11-server-side-khalid586.vercel.app/books').then(res => res.data)
-          
+          element:<Homepage></Homepage>,          
         },
         {
           path:'/details/:id',

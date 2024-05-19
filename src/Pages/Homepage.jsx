@@ -8,6 +8,7 @@ import { GrMapLocation, GrStatusGood } from 'react-icons/gr';
 import { AuthContext } from '../Providers/AuthProvider';
 import Spinner from '../Components/Spinner';
 import { MdDriveFolderUpload } from 'react-icons/md';
+import axios from 'axios';
 
 function Books({book ,key,user}){
     const  {
@@ -57,8 +58,17 @@ function Books({book ,key,user}){
 }
 
 function Homepage() {
-  const books = useLoaderData() || [];
   const {user,loading} = useContext(AuthContext);
+  const [books,setBooks] = useState([]);
+  const [ready,setReady] = useState(false);
+
+  useEffect(()=>{
+    axios.get('https://b9a11-server-side-khalid586.vercel.app/books')
+    .then(res => res.data)
+    .then(data => {setBooks(data); setReady(true);})
+    .catch(err => console.log(err))
+
+  },[])
   
 
   return (
@@ -67,7 +77,7 @@ function Homepage() {
             <title>Books Buy | Home</title>
         </Helmet>
         {
-          loading ? <Spinner></Spinner>:
+          loading || !ready ? <Spinner></Spinner>:
           <div>
             <Banner></Banner>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-4'>

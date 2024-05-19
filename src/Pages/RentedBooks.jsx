@@ -14,19 +14,17 @@ function RentedBooks() {
     useEffect(()=>{
         axios.get(`https://b9a11-server-side-khalid586.vercel.app/rented/${user.email}`)
         .then(res => res.data)
-        .then(data => setBooks(data))
+        .then(data => {setBooks(data); setPageLoading(false)})
     },[])
 
-    useEffect(()=>{
-        setPageLoading(false)
-    },[])
+
     return (
         <div>
         <Helmet>
             <title>Books Buy | Rented Books</title>
         </Helmet>
         {
-            pageloading?<Spinner></Spinner>
+            pageloading || loading?<Spinner></Spinner>
             :
             <div> 
                 <p className='text-center my-4 text-xl font-bold '>{books.length > 0 ?'Rented books':"You haven't rented any books yet!"}</p>
