@@ -110,8 +110,13 @@ function Detailspage() {
             <div className='my-4'>
             {
               user.email == uploaderEmail  ? 
-              <div className='flex gap-1 items-center font-bold'>
-                <MdDriveFolderUpload className='text-2xl text-violet-600'></MdDriveFolderUpload> <span className='text-blue-600 text-sm'>Uploaded by you</span>
+              <div className=''>
+                <div className='flex gap-1 items-center font-bold'>
+                  <MdDriveFolderUpload className='text-2xl text-violet-600'></MdDriveFolderUpload> <span className='text-blue-600 text-sm'>Uploaded by you</span>
+                </div>
+                <div className='mt-16'>
+                  <Link className='px-4 py-2 rounded-full border-4 border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-white' to = '/added_books'>Update</Link>
+                </div>
               </div>
               :
               <div className="flex gap-2">

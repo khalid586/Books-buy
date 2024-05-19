@@ -37,7 +37,12 @@ function Books({book ,key,user}){
           <div className='mx-2 my-1'>
               <div className='flex items-center justify-between'>                            
                   <p className='font-semibold text-black flex gap-1 items-center text-sm'><FaBook className='text-violet-500'></FaBook>{name}</p>
-                  <div className={`text-xs m-1 py-1 px-2 text-white rounded-full font-bold ${copies > 0 ? "bg-green-400":"bg-red-500"}`}>{copies > 0 ? 'In stock':'Out of stock'}</div>
+                  <div className='flex items-center gap-0.5'>                    
+                    <div className={`px-2 py-1 rounded-full text-xs font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
+                          {genre}
+                      </div>
+                    <div className={`text-xs m-1 py-1 px-2 text-white rounded-full font-bold ${copies > 0 ? "bg-green-400":"bg-red-500"}`}>{copies > 0 ? 'In stock':'Out of stock'}</div>
+                  </div>
               </div>
               <div className='flex items-center justify-between'>
                   <p className='flex gap-1 items-center text-xs font-bold text-gray-500'><FaRegPenToSquare className='text-green-400'></FaRegPenToSquare>{author}</p>
