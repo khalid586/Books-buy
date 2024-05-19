@@ -17,6 +17,14 @@ function Detailspage() {
   const [rented,setRented] = useState(false);
   const navigate = useNavigate();
 
+  const isMobile = window.innerWidth <= 768;
+  const style = {
+    width: isMobile? "500px" :'600px', 
+    height: isMobile ? "300px": "700px"
+  };
+
+
+
   const [book,setBook] = useState(data);
   const {
     _id,name,genre,photoUrl,author,copies,rating,uploaderEmail,rentedBy
@@ -85,7 +93,7 @@ function Detailspage() {
           reload ? <Spinner></Spinner>
           :
           <div className="w-full card lg:card-side bg-base-100">
-          <figure className='w-1/2'><img className='' src={photoUrl} alt="Album"/></figure>
+          <figure className='w-1/2'><img style={style} className='rounded-xl' src={photoUrl} alt="Album"/></figure>
           <div className="card-body  rounded-3xl">
             <div className='mb-4'>
                 <span className={`text-xs px-4  py-2 rounded-full  font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
