@@ -1,18 +1,28 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLoaderData } from 'react-router-dom'
 import Banner from '../Components/Banner'
 import { Helmet } from 'react-helmet'
 import { FaBook, FaInstagram } from 'react-icons/fa';
 import { FaLocationCrosshairs, FaRegPenToSquare } from 'react-icons/fa6';
-import { GrMapLocation } from 'react-icons/gr';
+import { GrMapLocation, GrStatusGood } from 'react-icons/gr';
 import { AuthContext } from '../Providers/AuthProvider';
 import Spinner from '../Components/Spinner';
 import { MdDriveFolderUpload } from 'react-icons/md';
 
 function Books({book ,key,user}){
-  const  {
-    _id,name,genre,photoUrl,author,copies,rating,uploaderEmail,rentedBy
-} = book;
+    const  {
+        _id,name,genre,photoUrl,author,copies,rating,uploaderEmail,rentedBy
+    } = book;
+
+    const [rented,setRented] = useState(false);
+
+    useEffect(()=>{
+      const result = rentedBy.find(person => person === user.email)
+      if(result) setRented(true);
+      else setRented(false);
+    },[])
+
+
 
   return(
       <Link to = {`details/${_id}`} className=''>
@@ -30,7 +40,13 @@ function Books({book ,key,user}){
               </div>
               <div className='flex items-center justify-between'>
                   <p className='flex gap-1 items-center text-xs font-bold text-gray-500'><FaRegPenToSquare className='text-green-400'></FaRegPenToSquare>{author}</p>
-                  { user?.email == uploaderEmail && <p className='text-xs text-red-600 flex gap-1 items-center font-bold'><MdDriveFolderUpload className='text-blue-600 text-lg'></MdDriveFolderUpload> By you</p>}
+                  { user?.email == uploaderEmail && <p className='text-xs text-blue-600 flex gap-1 items-center font-bold'><MdDriveFolderUpload className='text-violet-500 text-lg'></MdDriveFolderUpload>You added</p>}
+                  { rented && 
+                      <span className='flex items-center gap-0.5 text-green-500'>
+                        <GrStatusGood></GrStatusGood>
+                        <p className='text-xs text-red-500 font-bold px-1 rounded-full border-2 border-red-600'> Rented</p>
+                      </span>
+                  } 
               </div>
           </div>
       </Link>

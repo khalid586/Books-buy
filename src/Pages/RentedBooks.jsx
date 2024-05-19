@@ -4,6 +4,7 @@ import Spinner from '../Components/Spinner';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import BookItem from '../Components/BookItem';
+import { Link } from 'react-router-dom';
 
 function RentedBooks() {
     const {user,loading} = useContext(AuthContext);
@@ -38,6 +39,9 @@ function RentedBooks() {
                 </div>
             </div>
         }
+        <div className='text-center mt-16'>
+            <Link to ='/' className='px-4 py-2 rounded-full text-white bg-red-500'>Back to home</Link>
+        </div>
         </div>
     )
 }

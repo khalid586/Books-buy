@@ -5,6 +5,7 @@ import { IoCloudUploadOutline } from 'react-icons/io5';
 import Spinner from '../Components/Spinner';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { MdDriveFolderUpload } from 'react-icons/md';
 
 function Detailspage() {
   const data = useLoaderData();
@@ -99,7 +100,7 @@ function Detailspage() {
             {
               user.email == uploaderEmail  ? 
               <div className='flex gap-1 items-center font-bold'>
-                <IoCloudUploadOutline className='text-lg text-blue-600'></IoCloudUploadOutline> Uploaded by you
+                <MdDriveFolderUpload className='text-2xl text-violet-600'></MdDriveFolderUpload> <span className='text-blue-600 text-sm'>Uploaded by you</span>
               </div>
               :
               <div className="flex gap-2">
