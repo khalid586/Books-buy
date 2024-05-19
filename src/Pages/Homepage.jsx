@@ -79,7 +79,7 @@ function Homepage() {
         {
           loading || !ready ? <Spinner></Spinner>:
           <div>
-            <Banner></Banner>
+            <Banner books = {books}></Banner>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-4'>
             {
               books.map(book => 
