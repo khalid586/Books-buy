@@ -1,8 +1,9 @@
 import React from 'react'
-import { FaRegArrowAltCircleRight } from 'react-icons/fa';
+import { FaPenFancy, FaRegArrowAltCircleRight, FaStar } from 'react-icons/fa';
+import { VscGraph } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 
-function BookItem({ book, update , handleUpdate , handleDelete}) {
+function BookItem({ book, update , rent , handleUpdate , handleDelete}) {
     const {
         _id, name, genre, photoUrl, author, copies, rating, uploaderEmail, rentedBy
     } = book;
@@ -15,15 +16,21 @@ function BookItem({ book, update , handleUpdate , handleDelete}) {
             <div className="card-body">
                 <h2 className="text-xl font-extrabold mt-2">
                     {name}
-                    <sup className={`text-xs ml-1 px-1 py-0.5 rounded-full border-2 ${copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
-                        {copies > 0 ? "In stock" : "Out of stock"}
-                    </sup>
+                    {
+                        !rent &&
+                        <sup className={`text-xs ml-1 px-2 py-0.5 rounded-full border-2 ${copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
+                            {copies > 0 ? `${copies}  copies` : "Out of stock"}
+                        </sup>
+                    }
                 </h2>
-                <div className='mb-3 text-sm font-bold text-gray-500'>
-                    {author}
+                <div className='flex gap-1 items-center mb-3 text-sm font-bold text-gray-500'>
+                <FaPenFancy className='text-red-600 text-lg'></FaPenFancy> {author}
                 </div>
                 <div className='flex justify-between items-center'>
-                    <p className='font-medium'>Available Copies: <span className='font-bold'> {copies}</span></p>
+                    <p className='font-medium flex items-center gap-0.5'>
+                        <VscGraph className='text-xl text-violet-500'></VscGraph>
+                        Rating: <span className='font-bold'> {rating}</span> <FaStar className='text-green-500'></FaStar>
+                    </p>
                     <div className={`px-2 py-1 rounded-full text-xs font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
                         {genre}
                     </div>

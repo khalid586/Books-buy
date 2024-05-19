@@ -29,11 +29,11 @@ function RentedBooks() {
             pageloading?<Spinner></Spinner>
             :
             <div> 
-                <p className='text-center my-4 text-xl font-bold'>{books.length > 0 ?'Here are the books that you have rented':"You haven't rented any books yet!"}</p>
+                <p className='text-center my-4 text-xl font-bold '>{books.length > 0 ?'Rented books':"You haven't rented any books yet!"}</p>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4'>
                     {
                         books.map(
-                            book => <BookItem book = {book}></BookItem>
+                            book => <BookItem rent = {true} book = {book}></BookItem>
                         )
                     }
                 </div>

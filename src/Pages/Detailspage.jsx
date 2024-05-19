@@ -6,6 +6,9 @@ import Spinner from '../Components/Spinner';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { MdDriveFolderUpload } from 'react-icons/md';
+import { VscGraph } from 'react-icons/vsc';
+import { FaPenFancy, FaStar } from 'react-icons/fa';
+import { PiBooks } from 'react-icons/pi';
 
 function Detailspage() {
   const data = useLoaderData();
@@ -78,7 +81,7 @@ function Detailspage() {
   }
 
   return (
-    <div className='mx-4 flex items-center h-[80vh]'>
+    <div className='my-4 mx-4 flex items-center lg:h-[80vh]'>
         {
           reload ? <Spinner></Spinner>
           :
@@ -86,15 +89,24 @@ function Detailspage() {
           <figure className='w-1/2'><img className='' src={photoUrl} alt="Album"/></figure>
           <div className="card-body  rounded-3xl">
             <div className='mb-4'>
-                <span className={`px-4 py-2 rounded-full  font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
+                <span className={`text-xs px-4  py-2 rounded-full  font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
                 {genre}
                 </span>
             </div>
             <h2 className="card-title font-extrabold">{name}<sup className={`text-xs border-2 rounded-full px-1 py-0.5 ${copies>0?'text-green-500 border-green-400':'text-red-500 border-red-400'} `}>{copies > 0 ? 'In stock': 'Out of stock'}</sup></h2>
-              <p className='font-bold text-gray-500'>{author}</p>
-            <div className='my-4 py-4'>              
-              <p className='font-bold py-2'>Available copies: {copies}</p>
-              <p className='font-bold'>Rating: {rating}</p>
+              <span className='font-bold text-gray-500 flex gap-1 items-center'>
+              <FaPenFancy className='text-red-600 text-lg'></FaPenFancy> {author}
+
+              </span>
+            <div className='mb-16'>              
+              <span className='font-bold py-2 flex gap-0.5 items-center'>
+                <PiBooks className='text-blue-600 text-xl'></PiBooks>
+                Available copies: {copies}
+              </span>
+              <span className='font-bold flex items-center gap-0.5'>
+              <VscGraph className='text-xl text-violet-500'></VscGraph>
+                    Rating: <span className='font-bold'> {rating}</span> <FaStar className='text-green-500'></FaStar> 
+              </span>
             </div>
             <div className='my-4'>
             {

@@ -35,16 +35,18 @@ function Books({book ,key,user}){
           </img>
           <div className='mx-2 my-1'>
               <div className='flex items-center justify-between'>                            
-                  <p className='font-semibold text-black flex gap-1 items-center text-sm'><FaBook className='text-red-500'></FaBook>{name}</p>
+                  <p className='font-semibold text-black flex gap-1 items-center text-sm'><FaBook className='text-violet-500'></FaBook>{name}</p>
                   <div className={`text-xs m-1 py-1 px-2 text-white rounded-full font-bold ${copies > 0 ? "bg-green-400":"bg-red-500"}`}>{copies > 0 ? 'In stock':'Out of stock'}</div>
               </div>
               <div className='flex items-center justify-between'>
                   <p className='flex gap-1 items-center text-xs font-bold text-gray-500'><FaRegPenToSquare className='text-green-400'></FaRegPenToSquare>{author}</p>
                   { user?.email == uploaderEmail && <p className='text-xs text-blue-600 flex gap-1 items-center font-bold'><MdDriveFolderUpload className='text-violet-500 text-lg'></MdDriveFolderUpload>You added</p>}
                   { rented && 
-                      <span className='flex items-center gap-0.5 text-green-500'>
-                        <GrStatusGood></GrStatusGood>
-                        <p className='text-xs text-red-500 font-bold px-1 rounded-full border-2 border-red-600'> Rented</p>
+                      <span className='text-red-500'>
+                        <p className='flex items-center gap-0.5 text-xs  font-bold px-1 rounded-full border border-red-500'> 
+                          <GrStatusGood className='text-red-600'></GrStatusGood>
+                          Rented
+                        </p>
                       </span>
                   } 
               </div>

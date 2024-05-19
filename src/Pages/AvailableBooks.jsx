@@ -36,9 +36,9 @@ function AvailableBooks() {
                         <div className="card-body">
                             <h2 className="card-title text-2xl font-extrabold">
                                 {book.name}
-                                <sup className={`text-xs ml-1 px-1 py-0.5 rounded-full border-2 ${book.copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
-                        {book.copies > 0 ? "In stock" : "Out of stock"}
-                    </sup>
+                                <sup className={`text-xs ml-1 p-1 px-2 rounded-full border-2 ${book.copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
+                                    {book.copies > 0 ? `${book.copies} left` : "Out of stock"}
+                                </sup>
                             </h2>
                             <div className='flex justify-between mt-4'>
                                 <p className='font-bold text-gray-500'>{book.author}</p>
