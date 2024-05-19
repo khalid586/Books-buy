@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useLoaderData } from 'react-router-dom'
 import BookItem from '../Components/BookItem';
-import { FaRegArrowAltCircleRight } from 'react-icons/fa';
+import { FaListOl, FaRegArrowAltCircleRight } from 'react-icons/fa';
+import { IoGridOutline } from 'react-icons/io5';
 
 
 function AvailableBooks() {
@@ -11,9 +12,9 @@ function AvailableBooks() {
 
     return (
         <div>
-            <div className='flex justify-center   my-4 mb-8'>
-                <button className={`duration-500 py-2 px-4 ${tab == 1? active:inactive}`} onClick={()=>setTab(1)}>Grid view</button>
-                <button className={`duration-500 py-2 px-4  ${tab == 2? active:inactive}`} onClick={()=>setTab(2)}>List view</button>
+            <div className='flex font-semibold justify-center  my-4 mb-8'>
+                <button className={`flex gap-0.5 items-center border-l-2 rounded-l-2xl duration-500 py-2 px-4 ${tab == 1? active:inactive}`} onClick={()=>setTab(1)}><IoGridOutline></IoGridOutline> Grid view</button>
+                <button className={`flex gap-1 items-center border-r-2   rounded-r-2xl duration-500 py-2 px-4  ${tab == 2? active:inactive}`} onClick={()=>setTab(2)}><FaListOl></FaListOl> List view</button>
             </div>
             {
                 tab == 1 ? 

@@ -11,8 +11,8 @@ function BookItem({ book, update , rent , handleUpdate , handleDelete}) {
     const modalId = `modal_${_id}`;
 
     return (
-        <div className="card bg-base-100 shadow-xl">
-            <figure className='w-full max-h-56'><img src={photoUrl} alt="Book Cover" /></figure>
+        <div className="card bg-base-100 border shadow-md">
+            <figure className='w-full h-56'><img src={photoUrl} alt="Book Cover" /></figure>
             <div className="card-body">
                 <h2 className="text-xl font-extrabold mt-2">
                     {name}
