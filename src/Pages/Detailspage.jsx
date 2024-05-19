@@ -20,7 +20,7 @@ function Detailspage() {
   const isMobile = window.innerWidth <= 768;
   const style = {
     width: isMobile? "500px" :'600px', 
-    height: isMobile ? "300px": "700px"
+    height: isMobile ? "300px": "600px"
   };
 
 

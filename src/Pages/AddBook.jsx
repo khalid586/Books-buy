@@ -61,7 +61,7 @@ function AddBook() {
             loading? <Spinner></Spinner>
             :
             <form onSubmit={handleSubmit} className="min-w-80 mx-auto ">
-                <h5 className='text-center my-4 mb-8 text-green-500 text-xl font-bold flex justify-center items-center gap-1'>
+                <h5 className='text-center my-4 mb-8 text-xl font-bold flex justify-center items-center gap-1'>
                     <img className='' src="book-solid.svg" width={25} alt="" />
                     Book Details
                 </h5>
