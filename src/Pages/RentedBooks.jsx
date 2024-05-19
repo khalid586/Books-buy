@@ -12,7 +12,7 @@ function RentedBooks() {
     const [books,setBooks] = useState([])
 
     useEffect(()=>{
-        axios.get(`http://localhost:5007/rented/${user.email}`)
+        axios.get(`https://b9a11-server-side-khalid586.vercel.app/rented/${user.email}`)
         .then(res => res.data)
         .then(data => setBooks(data))
     },[])

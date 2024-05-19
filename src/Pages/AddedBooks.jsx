@@ -15,7 +15,7 @@ function AddedBooks() {
 
     useEffect(()=>{
         if(user){
-            axios.get(`http://localhost:5007/added_books/${user.email}`)
+            axios.get(`https://b9a11-server-side-khalid586.vercel.app/added_books/${user.email}`)
             .then(res => res.data)
             .then(data => {setBooks(data);setWait(false);})
         }
@@ -35,7 +35,7 @@ function AddedBooks() {
             name,genre,photoUrl,author,copies,rating
         }
         setWait(true);
-        axios.patch(`http://localhost:5007/update/${bookId}`,Info)
+        axios.patch(`https://b9a11-server-side-khalid586.vercel.app/update/${bookId}`,Info)
         .then(res => res.data)
         .then(data => {
             console.log(data);
@@ -63,7 +63,7 @@ function AddedBooks() {
           }).then((result) => {
             if (result.isConfirmed) {
                 setWait(true);
-                axios.delete(`http://localhost:5007/delete/${bookId}`)
+                axios.delete(`https://b9a11-server-side-khalid586.vercel.app/delete/${bookId}`)
                 .then(res => res.data)
                 .then(data => {
                     const {deletedCount} = data;

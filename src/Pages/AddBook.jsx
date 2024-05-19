@@ -38,7 +38,7 @@ function AddBook() {
             name,genre,photoUrl,author,copies,rating,uploaderEmail,rentedBy
         }
 
-        axios.post('http://localhost:5007/add_book',data)
+        axios.post('https://b9a11-server-side-khalid586.vercel.app/add_book',data)
         .then(res => res.data)
         .then((response)=>{
             if(response.acknowledged){

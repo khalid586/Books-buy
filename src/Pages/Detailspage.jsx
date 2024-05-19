@@ -37,7 +37,7 @@ function Detailspage() {
 
   function Fetch(){
     setReload(true);
-    axios.get(`http://localhost:5007/details/${_id}`)
+    axios.get(`https://b9a11-server-side-khalid586.vercel.app/details/${_id}`)
     .then(res => res.data)
     .then(data =>{
       setBook(data);
@@ -56,7 +56,7 @@ function Detailspage() {
     const info = {
       email:user.email
     }
-    axios.patch(`http://localhost:5007/rent/${_id}`,info)
+    axios.patch(`https://b9a11-server-side-khalid586.vercel.app/rent/${_id}`,info)
     .then(res => res.data)
     .then(data => {
       toast.success('Successfully rented');
@@ -70,12 +70,11 @@ function Detailspage() {
     const info = {
       email:user.email
     }
-    axios.patch(`http://localhost:5007/return/${_id}`,info)
+    axios.patch(`https://b9a11-server-side-khalid586.vercel.app/return/${_id}`,info)
     .then(res => res.data)
     .then(data => {
       toast.success('Successfully returned'); 
       Fetch();
-      NAVIGATE();
     })
     .catch(err => console.log(err))
   }

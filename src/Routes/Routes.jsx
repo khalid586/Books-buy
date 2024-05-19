@@ -22,13 +22,13 @@ const  router = createBrowserRouter([
         {
           index:true,
           element:<Homepage></Homepage>,
-          loader:() => axios.get('http://localhost:5007/books').then(res => res.data)
+          loader:() => axios.get('https://b9a11-server-side-khalid586.vercel.app/books').then(res => res.data)
           
         },
         {
           path:'/details/:id',
           element:<ProtectedRoute> <Detailspage></Detailspage></ProtectedRoute>,
-          loader:({params})=>axios.get(`http://localhost:5007/details/${params.id}`).then(res => res.data)
+          loader:({params})=>axios.get(`https://b9a11-server-side-khalid586.vercel.app/details/${params.id}`).then(res => res.data)
         },
         {
           path:'/login',
@@ -57,7 +57,7 @@ const  router = createBrowserRouter([
         {
           path:'/available',
           element:<ProtectedRoute><AvailableBooks></AvailableBooks></ProtectedRoute> ,
-          loader:()=> axios.get('http://localhost:5007/available').then(res => res.data).catch(err => console.error(err))
+          loader:()=> axios.get('https://b9a11-server-side-khalid586.vercel.app/available').then(res => res.data).catch(err => console.error(err))
         },
       ]
     },
