@@ -1,25 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLoaderData } from 'react-router-dom'
 import BookItem from '../Components/BookItem';
 import { FaListOl, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import { IoGridOutline } from 'react-icons/io5';
+import Spinner from '../Components/Spinner';
+import axios from 'axios';
 
 
 function AvailableBooks() {
+    const [books,setBooks] = useState([]);
+    const [ready,setReady] = useState(false)
     const [tab,setTab] = useState(1);
-    const books = useLoaderData() || [];
     const inactive = 'bg-white text-black' ,active = 'bg-green-500 text-white';
+
+    useEffect(()=>{
+        axios.get('https://b9a11-server-side-khalid586.vercel.app/available')
+        .then(res => res.data)
+        .then(data => {setBooks(data); setReady(true);})
+        .catch(err => console.error(err))
+
+    },[])
 
     return (
         <div>
-            <div className='flex font-semibold justify-center  my-4 mb-8'>
-                <button className={`flex gap-0.5 items-center border-l-2 rounded-l-2xl duration-500 py-2 px-4 ${tab == 1? active:inactive}`} onClick={()=>setTab(1)}><IoGridOutline></IoGridOutline> Grid view</button>
-                <button className={`flex gap-1 items-center border-r-2   rounded-r-2xl duration-500 py-2 px-4  ${tab == 2? active:inactive}`} onClick={()=>setTab(2)}><FaListOl></FaListOl> List view</button>
-            </div>
+        {
+            !ready ? <Spinner></Spinner>
+            :
+            <div>
+                <div className='flex font-semibold justify-center  my-4 mb-8'>
+                    <button className={`flex gap-0.5 items-center border-l-2 rounded-l-2xl duration-500 py-2 px-4 ${tab == 1? active:inactive}`} onClick={()=>setTab(1)}><IoGridOutline></IoGridOutline> Grid view</button>
+                    <button className={`flex gap-1 items-center border-r-2   rounded-r-2xl duration-500 py-2 px-4  ${tab == 2? active:inactive}`} onClick={()=>setTab(2)}><FaListOl></FaListOl> List view</button>
+                </div>
             {
                 tab == 1 ? 
             
-                <div className='m-4 grid grid-cols-4 gap-3'>
+                <div className='m-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
                 {
                     books.map(book => 
                         <div className=''>
@@ -54,6 +69,8 @@ function AvailableBooks() {
                 }
                 </div>
             }
+            </div>
+        }
         </div>
     )
 }

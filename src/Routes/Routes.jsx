@@ -55,7 +55,6 @@ const  router = createBrowserRouter([
         {
           path:'/available',
           element:<ProtectedRoute><AvailableBooks></AvailableBooks></ProtectedRoute> ,
-          loader:()=> axios.get('https://b9a11-server-side-khalid586.vercel.app/available').then(res => res.data).catch(err => console.error(err))
         },
       ]
     },
