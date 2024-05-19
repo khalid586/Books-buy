@@ -17,7 +17,7 @@ function Books({book ,key,user}){
     const [rented,setRented] = useState(false);
 
     useEffect(()=>{
-      const result = rentedBy.find(person => person === user.email)
+      const result = rentedBy.find(person => person === user?.email)
       if(result) setRented(true);
       else setRented(false);
     },[])
