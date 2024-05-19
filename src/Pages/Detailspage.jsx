@@ -107,13 +107,13 @@ function Detailspage() {
                 {/* rent button only when copies > 0 and hasn't rentedBy the user */}
                 {
                   copies > 0  && rented == false ?
-                  <button onClick={handleRent} className="btn border-green-400 border-2 text-green-500 bg-white font-bold">Rent</button>
+                  <button onClick={handleRent} className="btn border-green-400 border-2 text-green-500 bg-white font-bold">Rent Book</button>
                   :
                   copies <= 0 && !rented? <p className='text-red-500 font-semibold'>Currently out of stock and can't be rented</p>: ''
                 }
                 {
                   rented &&
-                  <button onClick={handleReturn} className="btn border-red-400 border-2 text-red-500 bg-white font-bold">Return</button>
+                  <button onClick={handleReturn} className="btn border-red-400 border-2 text-red-500 bg-white font-bold">Return Book</button>
                 }
               </div>
               
