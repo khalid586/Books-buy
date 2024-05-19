@@ -15,12 +15,17 @@ function ProfilePage() {
     const [invalidImage,setInvalidImage] = useState(false);
 
     useEffect(()=>{
-        setUrl(user?.photoURL);
-    },[user])
+        if(user.photoURL){
+            setUrl(user?.photoURL);
+            setInvalidImage(false);
+        }
+    },[loading])
 
     function defaultImage(){
-        setInvalidImage(true);
-        setUrl('https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1715904000&semt=ais_user')
+        if(!loading){            
+            setInvalidImage(true);
+            setUrl('https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1715904000&semt=ais_user')
+        }
     }
 
     function handleError(){
