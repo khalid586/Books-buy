@@ -11,7 +11,7 @@ function Banner({books}) {
   };
 
   // white
-  const bookIndx = [0,1,3];
+  const bookIndx = [0,2,1];
   let randomNumber = Math.floor(Math.random() * 3);
   randomNumber = bookIndx[randomNumber];
 

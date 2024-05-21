@@ -95,12 +95,15 @@ function Detailspage() {
           <div className="w-full card lg:card-side bg-base-100">
           <figure className='w-1/2'><img style={style} className='rounded-xl' src={photoUrl} alt="Album"/></figure>
           <div className="card-body  rounded-3xl">
-            <div className='mb-4'>
+            <div className='mb-4 flex gap-2'>
                 <span className={`text-xs px-4  py-2 rounded-full  font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
                 {genre}
                 </span>
+                <span className={`text-xs border-2 rounded-full  p-2 font-bold ${copies>0?'text-green-500 border-green-400':'text-red-500 border-red-400'} `}>
+                  {copies > 0 ? 'In stock': 'Out of stock'}
+                </span>
             </div>
-            <h2 className="card-title font-extrabold">{name}<sup className={`text-xs border-2 rounded-full px-1 py-0.5 ${copies>0?'text-green-500 border-green-400':'text-red-500 border-red-400'} `}>{copies > 0 ? 'In stock': 'Out of stock'}</sup></h2>
+            <h2 className="card-title font-extrabold">{name}</h2>
               <span className='font-bold text-gray-500 flex gap-1 items-center'>
               <FaPenFancy className='text-red-600 text-lg'></FaPenFancy> {author}
 
