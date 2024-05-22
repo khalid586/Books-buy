@@ -5,6 +5,7 @@ import { FaListOl, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import { IoGridOutline } from 'react-icons/io5';
 import Spinner from '../Components/Spinner';
 import axios from 'axios';
+import truncate from '../Utils/Truncate';
 
 
 function AvailableBooks() {
@@ -51,13 +52,13 @@ function AvailableBooks() {
                     <div key={book._id} className="card w-96 bg-base-100 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title text-2xl font-extrabold">
-                                {book.name}
+                                {truncate(book.name,20)}
                                 <sup className={`text-xs ml-1 p-1 px-2 rounded-full border-2 ${book.copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
-                                    {book.copies > 0 ? `${book.copies} left` : "Out of stock"}
+                                    {book.copies > 0 ? `${book.copies < 101 ? book.copies: '100+'} left` : "Out of stock"}
                                 </sup>
                             </h2>
                             <div className='flex justify-between mt-4'>
-                                <p className='font-bold text-gray-500'>{book.author}</p>
+                                <p className='font-bold text-gray-500'>{truncate(book.author,10)}</p>
                                 <Link to={`/details/${book._id}`} className='px-4 py-2 rounded-full flex items-center gap-1 text-blue-700 font-bold text-base'>
                                     Details <FaRegArrowAltCircleRight className='text-sm text-black' />
                                 </Link>
