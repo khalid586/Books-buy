@@ -26,7 +26,7 @@ const  router = createBrowserRouter([
         {
           path:'/details/:id',
           element:<ProtectedRoute> <Detailspage></Detailspage></ProtectedRoute>,
-          loader:({params})=>axios.get(`https://b9a11-server-side-khalid586.vercel.app/details/${params.id}`).then(res => res.data)
+          // loader:({params})=>axios.get(`https://b9a11-server-side-khalid586.vercel.app/details/${params.id}`).then(res => res.data)
         },
         {
           path:'/login',
