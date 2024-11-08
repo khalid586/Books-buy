@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { FaPenFancy, FaRegArrowAltCircleRight, FaStar } from 'react-icons/fa';
 import { VscGraph } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 import truncate from '../Utils/Truncate';
 
-function BookItem({ book, update , rent , handleUpdate , handleDelete}) {
+function BookItem({ book, update, rent, handleUpdate, handleDelete }) {
     const {
         _id, name, genre, photoUrl, author, copies, rating, uploaderEmail, rentedBy
     } = book;
@@ -12,91 +12,92 @@ function BookItem({ book, update , rent , handleUpdate , handleDelete}) {
     const modalId = `modal_${_id}`;
 
     return (
-        <div className="card bg-base-100 border shadow-md">
-            <figure className='w-full h-56'><img src={photoUrl} alt="Book Cover" /></figure>
-            <div className="card-body">
-                <h2 className="font-extrabold mt-2">
-                    {truncate(name,20)}
-                    {
-                        !rent &&
-                        <sup className={`text-xs ml-1 p-1 px-2 rounded-full border-2 ${book.copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'} `}>
-                            {book.copies > 0 ? `${book.copies < 101 ? book.copies: '100+'} left` : "Out of stock"}
-                        </sup>
-                    }
-                </h2>
-                <div className='flex gap-1 items-center mb-3 text-sm font-bold text-gray-500'>
-                <FaPenFancy className='text-red-600 text-lg'></FaPenFancy> {truncate(author,20)}
-                </div>
-                <div className='flex justify-between items-center'>
-                    <p className='font-medium flex items-center gap-0.5'>
-                        <VscGraph className='text-xl text-violet-500'></VscGraph>
-                        Rating: <span className='font-bold'> {rating}</span> <FaStar className='text-green-500'></FaStar>
+        <div className="card bg-white border rounded-lg shadow-lg p-4 transition-transform transform hover:scale-105 duration-200 ease-in-out">
+            <div className="flex items-start">
+                <img
+                    src={photoUrl}
+                    alt="Book Cover"
+                    className="w-24 h-24 rounded-full shadow-sm mr-4 object-cover"
+                />
+                <div className="flex-auto">
+                    <h2 className="font-bold">
+                        {truncate(name, 20)}
+                        {!rent && (
+                            <sup className={`ml-2 text-xs px-2 py-1 rounded-full ${copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'}`}>
+                                {copies > 0 ? `${copies < 101 ? copies : '100+'} left` : "Out of stock"}
+                            </sup>
+                        )}
+                    </h2>
+                    <p className="flex items-center text-sm font-medium text-gray-600 mb-1">
+                        <FaPenFancy className="text-red-500 mr-1" /> {truncate(author, 18)}
                     </p>
-                    <div className={`px-2 py-1 rounded-full text-xs font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
-                        {genre}
+                    <div className="flex justify-between items-center mb-3">
+                        <p className="text-sm font-medium text-gray-700 flex items-center">
+                            <VscGraph className="text-violet-500 mr-1" />
+                            Rating: <span className="font-bold ml-1">{rating}</span> <FaStar className="text-green-500 ml-1" />
+                        </p>
+                        <span className={`text-xs font-semibold py-1 px-2 rounded-full ${genre === 'Fiction' ? 'bg-purple-100 text-purple-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                            {genre}
+                        </span>
                     </div>
                 </div>
+            </div>
 
-                <div className='mt-8 flex gap-4'>
-                    <Link to={`/details/${_id}`} className='px-4 py-2 rounded-full flex items-center gap-1 text-blue-700 font-bold text-base'>
-                        Details <FaRegArrowAltCircleRight className='text-sm text-black' />
-                    </Link>
-                    {
-                        update &&
-                        <div className='gap-4 flex font-bold'>
-                            <button onClick={() => document.getElementById(modalId).showModal()} className='px-3 rounded-full border-2 border-green-500 text-green-500 hover:text-white hover:bg-green-500'>Update</button>
-                            <button onClick={()=>handleDelete(_id)}                              className='px-3 rounded-full border-2  border-red-500  hover:text-white hover:bg-red-500 text-red-600'>Delete</button>
-                        </div>
-                    }
-                </div>
+            <div className="flex justify-between items-center mt-3">
+                <Link to={`/details/${_id}`} className="text-sm font-semibold text-blue-600 flex items-center">
+                    Details <FaRegArrowAltCircleRight className="ml-1 text-base" />
+                </Link>
+                {update && (
+                    <div className="flex space-x-2">
+                        <button onClick={() => document.getElementById(modalId).showModal()} className="px-3 py-1 border border-green-500 text-green-500 rounded-full text-sm hover:bg-green-500 hover:text-white transition-colors duration-200">
+                            Update
+                        </button>
+                        <button onClick={() => handleDelete(_id)} className="px-3 py-1 border border-red-500 text-red-500 rounded-full text-sm hover:bg-red-500 hover:text-white transition-colors duration-200">
+                            Delete
+                        </button>
+                    </div>
+                )}
             </div>
 
             <dialog id={modalId} className="modal">
                 <div className="modal-box">
                     <div className="modal-action">
-                        <form onSubmit={(e)=>handleUpdate(e,book._id)} method="dialog">
-                            <div className="mb-5 flex gap-2">
+                        <form onSubmit={(e) => handleUpdate(e, _id)} method="dialog">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Book name</label>
-                                    <input type="text" id="name" defaultValue={name} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:focus:ring-green-500 dark:focus:border-green-500" required />
-                                </div>
-                                <div className="">
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Book Image Url</label>
-                                    <input type="text" name='photoUrl' id="photoUrl" defaultValue={photoUrl} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:focus:ring-green-500 dark:focus:border-green-500" required />
-                                </div>
-                            </div>
-
-                            <div className='flex gap-2'>
-                                <div className="mb-5">
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Author</label>
-                                    <input type="text" id="author" name="author" defaultValue={author} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:focus:ring-green-500 dark:focus:border-green-500" required />
+                                    <label className="text-sm font-medium text-gray-700">Book name</label>
+                                    <input type="text" id="name" defaultValue={name} className="input" required />
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Available Copies</label>
-                                    <input type="number" name='copies' id="copies" defaultValue={copies} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:focus:ring-green-500 dark:focus:border-green-500" min="0"  required />
+                                    <label className="text-sm font-medium text-gray-700">Book Image URL</label>
+                                    <input type="text" name="photoUrl" id="photoUrl" defaultValue={photoUrl} className="input" required />
                                 </div>
                             </div>
-
-                            <div className="mb-5">
-                                <div className="">
-                                    <label htmlFor="rating" className="block mb-2 text-sm font-medium text-gray-900">Rating</label>
-                                    <input type="number" name='rating' id="rating" defaultValue={rating} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:focus:ring-green-500 dark:focus:border-green-500" min="1" max="5" required />
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label className="text-sm font-medium text-gray-700">Author</label>
+                                    <input type="text" id="author" name="author" defaultValue={author} className="input" required />
+                                </div>
+                                <div>
+                                    <label className="text-sm font-medium text-gray-700">Available Copies</label>
+                                    <input type="number" name="copies" id="copies" defaultValue={copies} className="input" min="0" required />
                                 </div>
                             </div>
-
-                            <div className="mb-5">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Genre</label>
-                                <div className="flex flex-wrap gap-4">
-                                    <div className="dropdown">
-                                        <select name="genre" className="form-select mt-1 block w-full" defaultValue={genre}>
-                                            <option value="" disabled>Select a genre</option>
-                                            <option value="Fiction">Fiction</option>
-                                            <option value="Non fiction">Non fiction</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div className="mb-4">
+                                <label className="text-sm font-medium text-gray-700">Rating</label>
+                                <input type="number" name="rating" id="rating" defaultValue={rating} className="input" min="1" max="5" required />
                             </div>
-                            <button type='submit' className="px-4 py-2 rounded-full text-white bg-green-400">Update</button>
+                            <div className="mb-4">
+                                <label className="text-sm font-medium text-gray-700">Genre</label>
+                                <select name="genre" className="input" defaultValue={genre}>
+                                    <option value="" disabled>Select a genre</option>
+                                    <option value="Fiction">Fiction</option>
+                                    <option value="Non fiction">Non fiction</option>
+                                </select>
+                            </div>
+                            <button type="submit" className="w-full py-2 mt-3 rounded-full bg-green-500 text-white text-sm font-semibold hover:bg-green-600 transition-colors duration-200">
+                                Update
+                            </button>
                         </form>
                     </div>
                 </div>
