@@ -51,9 +51,9 @@ function Books({book ,key,user}){
                   <p className='flex gap-1 items-center text-xs font-bold text-gray-500'><FaRegPenToSquare className='text-green-400'></FaRegPenToSquare>{truncate(author,20)}</p>
                   { user?.email == uploaderEmail && <p className='text-xs text-blue-600 flex gap-1 items-center font-bold'><MdDriveFolderUpload className='text-violet-500 text-lg'></MdDriveFolderUpload>You added</p>}
                   { rented && 
-                      <span className='text-red-500'>
-                        <p className='flex items-center gap-0.5 text-xs  font-bold px-1 rounded-full border border-red-500'> 
-                          <GrStatusGood className='text-red-600'></GrStatusGood>
+                      <span className='text-green-500'> 
+                        <p className='flex items-center gap-0.5 text-xs  font-bold px-1 rounded-full border border-green-500'> 
+                          <GrStatusGood className='text-green-600'></GrStatusGood>
                           Rented
                         </p>
                       </span>
