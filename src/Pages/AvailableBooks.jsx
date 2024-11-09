@@ -6,6 +6,8 @@ import { IoGridOutline } from 'react-icons/io5';
 import Spinner from '../Components/Spinner';
 import axios from 'axios';
 import truncate from '../Utils/Truncate';
+import BookItemSkeleton from '../Components/BookItemSkeleton';
+import Skeleton2 from '../Components/Skeleton2';
 
 
 function AvailableBooks() {
@@ -22,11 +24,11 @@ function AvailableBooks() {
 
     },[])
 
+    if(!ready){
+        return <BookItemSkeleton></BookItemSkeleton>
+    }
+
     return (
-        <div>
-        {
-            !ready ? <Spinner></Spinner>
-            :
             <div>
                 <div className='flex font-semibold justify-center  my-4 mb-8'>
                     <button className={`flex gap-0.5 items-center border-l-2 rounded-l-2xl duration-500 py-2 px-4 ${tab == 1? active:inactive}`} onClick={()=>setTab(1)}><IoGridOutline></IoGridOutline> Grid view</button>
@@ -71,8 +73,6 @@ function AvailableBooks() {
                 </div>
             }
             </div>
-        }
-        </div>
     )
 }
 

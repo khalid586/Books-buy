@@ -12,6 +12,8 @@ import ErrorPage from "../Pages/ErrorPage";
 import axios from "axios";
 import AvailableBooks from "../Pages/AvailableBooks";
 import AddedBooks from "../Pages/AddedBooks";
+import BookItemSkeleton from "../Components/BookItemSkeleton";
+import Spinner from "../Components/Spinner";
 
 const  router = createBrowserRouter([
     {
@@ -46,7 +48,7 @@ const  router = createBrowserRouter([
         },
         {
           path:'/added_books',
-          element:<ProtectedRoute><AddedBooks></AddedBooks></ProtectedRoute> ,
+          element:<ProtectedRoute loader={<BookItemSkeleton></BookItemSkeleton>}><AddedBooks></AddedBooks></ProtectedRoute> ,
         },
         {
           path:'/add_book',
@@ -54,7 +56,7 @@ const  router = createBrowserRouter([
         },
         {
           path:'/available',
-          element:<ProtectedRoute><AvailableBooks></AvailableBooks></ProtectedRoute> ,
+          element:<ProtectedRoute loader={<BookItemSkeleton></BookItemSkeleton>}><AvailableBooks></AvailableBooks></ProtectedRoute> ,
         },
       ]
     },

@@ -5,6 +5,7 @@ import axios from 'axios';
 import BookItem from '../Components/BookItem';
 import { ToastContainer, toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import BookItemSkeleton from '../Components/BookItemSkeleton';
 
 
 function AddedBooks() {
@@ -86,7 +87,7 @@ function AddedBooks() {
     return (
         <div>
             {
-                loading || wait? <Spinner></Spinner>
+                loading || wait? <BookItemSkeleton></BookItemSkeleton>
                 :
                 <div className='text-center'>
                     <p className='font-bold mt-6 text-xl'>{books.length > 0?'You have added the following books':"You haven't added any books yet!"}</p> <br />

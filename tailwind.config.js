@@ -13,6 +13,19 @@ export default {
         fontFamily: {
           'custom': ['Manrope'], // Define your custom font family
         },
+        animation: {
+          shimmer: 'shimmer 1s linear infinite',  // Define the shimmer animation speed here
+        },
+        keyframes: {
+          shimmer: {
+            '0%': {
+              backgroundPosition: '-200% 0',
+            },
+            '100%': {
+              backgroundPosition: '200% 0',
+            },
+          },
+        }
         
       },
     },
