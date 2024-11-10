@@ -10,12 +10,15 @@ function Books({ book, user }) {
     } = book;
 
     const [rented, setRented] = useState(false);
+    const [hide, setHide] = useState(false);
 
     useEffect(() => {
         const result = rentedBy.includes(user?.email);
         setRented(!!result);
     }, [rentedBy, user?.email]);
 
+    if(hide) return;
+    
     return (
         <Link to={`/details/${_id}`} className="rounded-lg overflow-hidden duration-300 max-w-xs hover:shadow mx-auto">
             <div className="relative w-40 h-40 mx-auto">
@@ -24,6 +27,7 @@ function Books({ book, user }) {
                     src={photoUrl} 
                     alt={`${name} cover`} 
                     onError={(e) => {
+                        setHide(true);
                         e.target.src = 'https://i.ibb.co.com/bHLBFW1/images-q-tbn-ANd9-Gc-TABypl-NASv-DYl6kskcoa2u-SU2-m-Ufl3e-K4-ERxg4lf-Bw-s.jpg';
                         e.target.alt = 'Fallback Image';
                     }}
