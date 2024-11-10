@@ -20,10 +20,10 @@ function Books({ book, user }) {
     if(hide) return;
     
     return (
-        <Link to={`/details/${_id}`} className="rounded-lg overflow-hidden duration-300 max-w-xs hover:shadow mx-auto">
-            <div className="relative w-40 h-40 mx-auto">
+        <Link to={`/details/${_id}`} className="rounded-lg overflow-hidden duration-300 max-w-xs hover:border-b-4 hover:border-b-red-400  w-40">
+            <div className="relative w-40 h-40">
                 <img 
-                    className="w-40 h-full object-cover" 
+                    className="w-full h-full object-cover" 
                     src={photoUrl} 
                     alt={`${name} cover`} 
                     onError={(e) => {

@@ -113,7 +113,7 @@ function Detailspage() {
                     <span className="text-blue-600 text-sm">Uploaded by you</span>
                   </div>
                   <div className="mt-16">
-                    <Link className="px-4 py-2 rounded-full border-4 border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-white" to="/added_books">
+                    <Link className="px-4 py-2 rounded-full border-2 duration-300 border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-white" to="/added_books">
                       Update
                     </Link>
                   </div>
