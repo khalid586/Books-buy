@@ -24,7 +24,7 @@ function Books({ book, user }) {
                     src={photoUrl} 
                     alt={`${name} cover`} 
                     onError={(e) => {
-                        e.target.src = 'https://i.ibb.co/MDBxfMK/pexels-photo-1450360.jpg';
+                        e.target.src = 'https://i.ibb.co.com/bHLBFW1/images-q-tbn-ANd9-Gc-TABypl-NASv-DYl6kskcoa2u-SU2-m-Ufl3e-K4-ERxg4lf-Bw-s.jpg';
                         e.target.alt = 'Fallback Image';
                     }}
                 />
