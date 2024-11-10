@@ -6,11 +6,13 @@ import Navbar from './Components/Navbar'
 
 function Root() {
   return (
-    <div className='font-custom'>
+    <div className='font-custom '>
+      <div className='md:mx-16'>
         <Navbar></Navbar>
             <div className='min-h-[90vh]'>
                 <Outlet></Outlet>
             </div>
+      </div>
         <Footer></Footer>
     </div>
   )
