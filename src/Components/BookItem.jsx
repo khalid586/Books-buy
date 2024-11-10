@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaPenFancy, FaRegArrowAltCircleRight, FaStar } from 'react-icons/fa';
 import { VscGraph } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,9 @@ function BookItem({ book, update, rent, handleUpdate, handleDelete }) {
     } = book;
 
     const modalId = `modal_${_id}`;
+    const[hide,setHide] = useState(false);
+
+    if(hide) return;
 
     return (
         <div className="card bg-white border rounded-lg shadow-lg p-4 transition-transform transform hover:scale-105 duration-200 ease-in-out">
@@ -18,6 +21,10 @@ function BookItem({ book, update, rent, handleUpdate, handleDelete }) {
                     src={photoUrl}
                     alt="Book Cover"
                     className="w-24 h-24 rounded-full shadow-sm mr-4 object-cover"
+                    onError={(e) =>{
+                        setHide(true);
+                        e.target.src = 'https://i.ibb.co.com/bHLBFW1/images-q-tbn-ANd9-Gc-TABypl-NASv-DYl6kskcoa2u-SU2-m-Ufl3e-K4-ERxg4lf-Bw-s.jpg'
+                    }}
                 />
                 <div className="flex-auto">
                     <h2 className="font-bold">
