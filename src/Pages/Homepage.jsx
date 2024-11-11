@@ -43,8 +43,8 @@ function Homepage() {
             
 
             <div className='md:my-16'>
-              <h1 className="text-3xl md:text-4xl font-extrabold  text-red-600 mb-6 tracking-wide">
-                Your Picks
+              <h1 className="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide">
+                Your <span className='bg-red-500 text-white px-2 rounded-xl'> Picks</span>
               </h1>
               <div className='gap-4 grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
               {
