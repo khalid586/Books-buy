@@ -45,7 +45,7 @@ function BookItem({ book, update, rent, handleUpdate, handleDelete }) {
                 <div className="flex-auto">
                     <h2 className="font-bold">
                         {truncate(name, 20)}
-                        <span className={`w-28 bg-red-300 rounded-full px-2 py-1 text-xs font-bold text-red-600  ${problem? 'block' : 'hidden'}`}>Update image</span>
+                        <span className={`w-28 bg-red-300 rounded-full px-2 py-1 text-xs font-bold text-red-600  ${problem? 'block' : 'hidden'}`}>image not found</span>
                     </h2>
                     <p className="flex items-center text-sm font-medium text-gray-600 mb-1">
                         <FaPenFancy className="text-red-500 mr-1" /> {truncate(author, 18)}
