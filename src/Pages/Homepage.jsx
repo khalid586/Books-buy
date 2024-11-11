@@ -9,8 +9,8 @@ import { MdDriveFolderUpload } from 'react-icons/md';
 import truncate from '../Utils/Truncate';
 import { AuthContext } from '../Providers/AuthProvider';
 import axios from 'axios';
-import Spinner from '../Components/Spinner';
 import Books from '../Components/Books';   
+import HomepageSkeleton from '../Components/HomepageSkeleton';
 
 
 function Homepage() {
@@ -33,7 +33,7 @@ function Homepage() {
             <title>Books Buy | Home</title>
         </Helmet>
         {
-          loading || !ready ? <Spinner></Spinner>:
+          loading || !ready ? <HomepageSkeleton></HomepageSkeleton>:
           <div>
             <Banner books = {books}></Banner>
             <div className='grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
