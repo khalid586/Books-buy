@@ -16,8 +16,8 @@ function Featured() {
 
   return (
     <div className='mt-8'>
-      <h1 className="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide">
-        <span className='bg-red-500 text-white px-2 rounded-xl'>Featured</span> Books
+      <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide">
+        <span className='bg-red-500 text-white px-2 rounded-lg'>Featured</span> Books
       </h1>
       <div className='bg-red-100 rounded-xl py-4 gap-4 grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
       {
