@@ -11,6 +11,8 @@ import { AuthContext } from '../Providers/AuthProvider';
 import axios from 'axios';
 import Books from '../Components/Books';   
 import HomepageSkeleton from '../Components/HomepageSkeleton';
+import Featured from '../Components/Featured';
+import BestSeller from '../Components/BestSeller';
 
 
 function Homepage() {
@@ -37,15 +39,24 @@ function Homepage() {
           <div>
             <Banner books = {books}></Banner>
 
-            {/* <Featured></Featured> */}
+            <Featured></Featured>
             
-            <div className='grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
-            {
-              books.map(book => 
-                  <Books user = {user} book = {book} key = {book._id}></Books>
-              )
-            }
+
+            <div className='md:my-16'>
+              <h1 className="text-3xl md:text-4xl font-extrabold  text-red-600 mb-6 tracking-wide">
+                Your Picks
+              </h1>
+              <div className='gap-4 grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
+              {
+                books.map(book => 
+                    <Books user = {user} book = {book} key = {book._id}></Books>
+                )
+              }
+              </div>
             </div>
+
+              <BestSeller></BestSeller>
+
           </div>
         }
     </div>

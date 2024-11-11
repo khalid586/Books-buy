@@ -20,7 +20,7 @@ function Books({ book, user }) {
     if(hide) return;
     
     return (
-        <Link to={`/details/${_id}`} className="rounded-lg overflow-hidden duration-300 max-w-xs hover:border-b-4 hover:border-b-red-400  w-40">
+        <Link to={`/details/${_id}`} className="rounded-lg overflow-hidden duration-300 max-w-xs border-b-4 hover:border-b-red-400 hover:shadow-xl  w-40">
             <div className="relative w-40 h-40">
                 <img 
                     className="w-full h-full object-cover" 
