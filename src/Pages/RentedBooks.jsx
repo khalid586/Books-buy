@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import BookItem from '../Components/BookItem';
 import { Link } from 'react-router-dom';
+import BookItemSkeleton from '../Components/BookItemSkeleton';
 
 function RentedBooks() {
     const {user,loading} = useContext(AuthContext);
@@ -24,7 +25,7 @@ function RentedBooks() {
             <title>Books Buy | Rented Books</title>
         </Helmet>
         {
-            pageloading || loading?<Spinner></Spinner>
+            pageloading || loading? <BookItemSkeleton></BookItemSkeleton>
             :
             <div> 
                 <p className='text-center my-4 text-xl font-bold '>{books.length > 0 ?'Rented books':"You haven't rented any books yet!"}</p>

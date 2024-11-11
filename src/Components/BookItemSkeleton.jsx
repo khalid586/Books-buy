@@ -4,7 +4,7 @@ import React from 'react';
 function BookItemSkeleton() {
     const skeletons = [];
 
-    for(let i = 0 ; i < 8 ; i++){
+    for(let i = 0 ; i < 16 ; i++){
         skeletons.push(
             <div className="card bg-white border rounded-lg shadow-lg p-4 transition-transform transform hover:scale-105 duration-200 ease-in-out">
                 <div className="flex items-start">

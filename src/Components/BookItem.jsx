@@ -36,16 +36,16 @@ function BookItem({ book, update, rent, handleUpdate, handleDelete }) {
                             e.target.src = 'https://i.ibb.co.com/bHLBFW1/images-q-tbn-ANd9-Gc-TABypl-NASv-DYl6kskcoa2u-SU2-m-Ufl3e-K4-ERxg4lf-Bw-s.jpg'
                         }}
                     />
-                    <span className={`bg-red-300 rounded-full px-2 text-xs font-bold text-red-600 absolute top-2 right-2 ${problem? 'block' : 'hidden'}`}>Problem</span>
+                    {!rent && (
+                        <sup className={`ml-2 text-xs px-2 absolute right-2 top-2 py-1 font-bold rounded-full ${copies > 0 ? 'text-green-600 bg-green-100' : 'text-red-600 bg-red-100'}`}>
+                            {copies > 0 ? `${copies < 101 ? copies : '100+'} left` : "Out of stock"}
+                        </sup>
+                    )}
                 </div>
                 <div className="flex-auto">
                     <h2 className="font-bold">
                         {truncate(name, 20)}
-                        {!rent && (
-                            <sup className={`ml-2 text-xs px-2 py-1 rounded-full ${copies > 0 ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'}`}>
-                                {copies > 0 ? `${copies < 101 ? copies : '100+'} left` : "Out of stock"}
-                            </sup>
-                        )}
+                        <span className={`w-28 bg-red-300 rounded-full px-2 py-1 text-xs font-bold text-red-600  ${problem? 'block' : 'hidden'}`}>Update image</span>
                     </h2>
                     <p className="flex items-center text-sm font-medium text-gray-600 mb-1">
                         <FaPenFancy className="text-red-500 mr-1" /> {truncate(author, 18)}

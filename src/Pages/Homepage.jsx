@@ -36,6 +36,9 @@ function Homepage() {
           loading || !ready ? <HomepageSkeleton></HomepageSkeleton>:
           <div>
             <Banner books = {books}></Banner>
+
+            {/* <Featured></Featured> */}
+            
             <div className='grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
             {
               books.map(book => 

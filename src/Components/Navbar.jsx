@@ -50,7 +50,7 @@ function Navbar() {
                 </ul>
             </div>
             <Link className="font-bold text-xl mx-[-4px]" to = '/'>
-                <p className='flex gap-1'> <img src = '/book-solid.svg' width={20}></img> Books Buy</p>
+                <p className='flex gap-1'> <img src = '/book-solid.svg' width={20}/>Books <span className='text-red-500'>Buy</span></p>
             </Link>
         </div>
 
