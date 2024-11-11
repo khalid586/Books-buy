@@ -30,7 +30,7 @@ function AddedBooks() {
         const genre = form.genre.value;
         const author = form.author.value;
         const copies = parseInt(form.copies.value);
-        const rating = parseInt(form.rating.value);
+        const rating = parseFloat(form.rating.value);
 
         const Info = {
             name,genre,photoUrl,author,copies,rating

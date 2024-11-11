@@ -29,7 +29,7 @@ function AddBook() {
         const genre = form.genre.value;
         const author = form.author.value;
         const copies = parseInt(form.copies.value);
-        const rating = parseInt(form.rating.value);
+        const rating = parseFloat(form.rating.value);
         const uploaderEmail = user?.email;
         const rentedBy = [];
 
