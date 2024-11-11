@@ -104,8 +104,19 @@ function BookItem({ book, update, rent, handleUpdate, handleDelete }) {
                             </div>
                             <div className="mb-4">
                                 <label className="text-sm font-medium text-gray-700">Rating</label>
-                                <input type="number" name="rating" id="rating" defaultValue={rating} className="input" min="1" max="5" required />
+                                <input
+                                    type="number"
+                                    name="rating"
+                                    id="rating"
+                                    defaultValue={rating}
+                                    className="input"
+                                    min="1"
+                                    max="5"
+                                    step="0.1"
+                                    required
+                                />
                             </div>
+
                             <div className="mb-4">
                                 <label className="text-sm font-medium text-gray-700">Genre</label>
                                 <select name="genre" className="input" defaultValue={genre}>
