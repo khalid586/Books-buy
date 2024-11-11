@@ -18,7 +18,7 @@ function Detailspage() {
   const queryClient = useQueryClient();
   const [rented, setRented] = useState(false);
 
-  // Fetch book details using useQuery
+  // Fetch book details
   const { data: book = {}, isLoading: reload } = useQuery({
     queryKey: ['bookDetails', id],
     queryFn: async () => {
@@ -27,31 +27,24 @@ function Detailspage() {
     },
   });
 
-  const {
-    _id, name, genre, photoUrl, author, copies, rating, uploaderEmail, rentedBy,
-  } = book;
+  const { _id, name, genre, photoUrl, author, copies, rating, uploaderEmail, rentedBy } = book;
 
-  // Check if the user has rented the book
   useEffect(() => {
     if (user && rentedBy) {
       setRented(rentedBy.some((personMail) => personMail === user.email));
     }
   }, [user, rentedBy, loading]);
 
-  const isMobile = window.innerWidth <= 768;
-  const style = {
-    width: isMobile ? '500px' : '600px',
-    height: isMobile ? '300px' : '600px',
-  };
+  const style = { width: '100%', height: 'auto', maxWidth: '600px' };
 
-  // Navigate to rented books
+  // Navigation function
   const navigateToRentedBooks = () => {
     setTimeout(() => {
       navigate('/rented_books');
     }, 1500);
   };
 
-  // Mutations for rent and return actions
+  // Rent and Return mutations
   const rentMutation = useMutation({
     mutationFn: async () => {
       await axios.patch(`https://b9a11-server-side-khalid586.vercel.app/rent/${_id}`, { email: user.email });
@@ -74,15 +67,15 @@ function Detailspage() {
   });
 
   return (
-    <div className="my-4 mx-4 flex items-center lg:h-[80vh]">
+    <div className="my-4 mx-4 flex flex-col lg:flex-row items-center lg:h-[80vh]">
       {reload ? (
         <Spinner />
       ) : (
-        <div className="w-full card lg:card-side bg-base-100">
-          <figure className="w-1/2">
-            <img style={style} className="rounded-xl" src={photoUrl} alt="Album" />
+        <div className="card lg:card-side bg-base-100 w-full lg:w-2/3 shadow-lg p-6 rounded-lg">
+          <figure className="flex-1">
+            <img style={style} className="rounded-xl" src={photoUrl} alt={name} />
           </figure>
-          <div className="card-body rounded-3xl">
+          <div className="card-body flex-1">
             <div className="mb-4 flex gap-2">
               <span className={`text-xs px-4 py-2 rounded-full font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
                 {genre}
@@ -91,50 +84,44 @@ function Detailspage() {
                 {copies > 0 ? 'In stock' : 'Out of stock'}
               </span>
             </div>
-            <h2 className="card-title font-extrabold">{name}</h2>
+            <h2 className="card-title font-extrabold text-2xl">{name}</h2>
             <span className="font-bold text-gray-500 flex gap-1 items-center">
               <FaPenFancy className="text-red-600 text-lg" /> {author}
             </span>
-            <div className="mb-16">
-              <span className="font-bold py-2 flex gap-0.5 items-center">
-                <PiBooks className="text-blue-600 text-xl" />
-                Available copies: {copies}
+            <div className="mb-8 mt-4 flex flex-col gap-2">
+              <span className="font-bold text-lg flex items-center gap-1">
+                <PiBooks className="text-blue-600" /> Available copies: {copies}
               </span>
-              <span className="font-bold flex items-center gap-0.5">
-                <VscGraph className="text-xl text-violet-500" />
-                Rating: <span className="font-bold"> {rating}</span> <FaStar className="text-green-500" />
+              <span className="font-bold text-lg flex items-center gap-1">
+                <VscGraph className="text-violet-500" /> Rating: {rating} <FaStar className="text-yellow-500" />
               </span>
             </div>
-            <div className="my-4">
-              {user.email === uploaderEmail ? (
-                <div>
-                  <div className="flex gap-1 items-center font-bold">
-                    <MdDriveFolderUpload className="text-2xl text-violet-600" />
-                    <span className="text-blue-600 text-sm">Uploaded by you</span>
-                  </div>
-                  <div className="mt-16">
-                    <Link className="px-4 py-2 rounded-full border-2 duration-300 border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-white" to="/added_books">
-                      Update
-                    </Link>
-                  </div>
+            {user.email === uploaderEmail ? (
+              <div className="flex flex-col items-start">
+                <div className="flex gap-1 items-center font-bold">
+                  <MdDriveFolderUpload className="text-2xl text-violet-600" />
+                  <span className="text-blue-600 text-sm">Uploaded by you</span>
                 </div>
-              ) : (
-                <div className="flex gap-2">
-                  {copies > 0 && !rented ? (
-                    <button onClick={() => rentMutation.mutate()} className="btn border-green-400 border-2 text-green-500 bg-white font-bold">
-                      Rent Book
-                    </button>
-                  ) : (
-                    copies <= 0 && !rented && <p className="text-red-500 font-semibold">Currently out of stock and can't be rented</p>
-                  )}
-                  {rented && (
-                    <button onClick={() => returnMutation.mutate()} className="btn border-red-400 border-2 text-red-500 bg-white font-bold">
-                      Return Book
-                    </button>
-                  )}
-                </div>
-              )}
-            </div>
+                <Link to="/added_books" className="mt-8 px-4 py-2 rounded-full border-2 border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-white">
+                  Update
+                </Link>
+              </div>
+            ) : (
+              <div className="flex gap-2 mt-4">
+                {copies > 0 && !rented ? (
+                  <button onClick={() => rentMutation.mutate()} className="btn border-green-400 border-2 text-green-500 bg-white font-bold">
+                    Rent Book
+                  </button>
+                ) : (
+                  copies <= 0 && !rented && <p className="text-red-500 font-semibold">Currently out of stock and can't be rented</p>
+                )}
+                {rented && (
+                  <button onClick={() => returnMutation.mutate()} className="btn border-red-400 border-2 text-red-500 bg-white font-bold">
+                    Return Book
+                  </button>
+                )}
+              </div>
+            )}
             <div className="mt-4">
               <Link to="/" className="px-4 py-2 rounded-full text-white bg-red-500">
                 Back to home
