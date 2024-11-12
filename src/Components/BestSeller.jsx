@@ -1,18 +1,25 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Books from './Books';
+import BooksSkeleton from './BooksSkeleton';
 
 function BestSeller() {
   const [books, setBooks] = useState([]);
+  const [loading,setLoading] = useState(true);
   
   useEffect(() => {
     axios.get('https://b9a11-server-side-khalid586.vercel.app/bestSeller')
       .then(res => res.data)
       .then(data => {
         setBooks(data);
+        setLoading(false);
       })
       .catch(error => console.error('Error fetching best seller items:', error));
   }, []);
+
+  if(loading){
+    return <BooksSkeleton></BooksSkeleton>
+  }
 
   return (
     <>

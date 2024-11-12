@@ -1,18 +1,27 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Books from './Books';
+import BooksSkeleton from './BooksSkeleton';
 
 function Featured() {
   const [books, setBooks] = useState([]);
+  const[loading,setLoading] = useState(true);
   
   useEffect(() => {
     axios.get('https://b9a11-server-side-khalid586.vercel.app/featured')
       .then(res => res.data)
       .then(data => {
         setBooks(data);
+        setLoading(false);
       })
       .catch(error => console.error('Error fetching featured items:', error));
   }, []);
+
+  if(loading){
+    return(
+        <BooksSkeleton></BooksSkeleton>
+    )
+  }
 
   return (
     <div className='mt-8'>
