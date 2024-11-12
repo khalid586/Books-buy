@@ -37,7 +37,12 @@ function Detailspage() {
     }
   }, [user, rentedBy, loading]);
 
-  const style = { width: '100%', height: 'auto', maxWidth: '600px' };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
+
+
+  const style = { width: '100%', height: '500px', maxWidth: '600px' };
 
   // Navigation function
   const navigateToRentedBooks = () => {
@@ -75,7 +80,7 @@ function Detailspage() {
   return (
       <div>
         <div className="my-4 mx-4 flex flex-col lg:flex-row items-center lg:h-[60vh]">
-            <div className="card lg:card-side bg-base-100 w-full lg:w-2/3 shadow-lg p-6 rounded-lg">
+            <div className="card lg:card-side bg-base-100 w-full lg:w-2/3 shadow p-6 rounded-lg">
               <figure className="flex-1">
                 <img style={style} className="rounded-xl" src={photoUrl} alt={name} />
               </figure>
