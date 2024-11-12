@@ -49,13 +49,6 @@ function Books({ book, user }) {
                 <p className="flex items-center text-gray-500 text-xs mb-1">
                     <FaPen className="text-green-400 mr-1" />{truncate(author, 12)}
                 </p>
-                <div className="flex justify-between items-center text-xs">
-                    {rented && (
-                        <span className="text-xs text-green-500 flex items-center font-bold px-2 py-0.5 rounded-full border border-green-500">
-                            <GrStatusGood className="mr-1" /> Rented
-                        </span>
-                    )}
-                </div>
             </div>
         </Link>
     );
