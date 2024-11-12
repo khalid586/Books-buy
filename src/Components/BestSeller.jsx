@@ -26,7 +26,7 @@ function BestSeller() {
       <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide">
        <span className='bg-red-500 text-white px-2 rounded-lg'>Best</span> Seller
       </h1>
-      <div className='bg-yellow-100 rounded-xl py-4 gap-4 grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
+      <div className='bg-red-100 rounded-xl py-4 gap-4 grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8  my-4'>
       {
         books.map(book => 
             <Books book = {book} key = {book._id}></Books>

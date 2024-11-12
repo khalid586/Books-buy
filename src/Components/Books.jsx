@@ -6,17 +6,10 @@ import truncate from '../Utils/Truncate';
 
 function Books({ book, user }) {
     const {
-        _id, name, genre, photoUrl, author, copies, uploaderEmail, rentedBy
+        _id, name, photoUrl, author, copies
     } = book;
 
-    const [rented, setRented] = useState(false);
     const [hide, setHide] = useState(false);
-
-    useEffect(() => {
-        const result = rentedBy.includes(user?.email);
-        setRented(!!result);
-    }, [rentedBy, user?.email]);
-
     if(hide) return;
     
     return (
@@ -43,11 +36,15 @@ function Books({ book, user }) {
                 )}
             </div>
             <div className="p-2 bg-transparent"> {/* Make background transparent here */}
-                <h3 className="text-sm font-semibold text-gray-800 mb-1">
-                    <FaBook className="inline text-violet-500 mr-1" />{truncate(name, 15)}
+                <h3 className="text-sm font-bold text-gray-800 mb-1">
+                {
+                    truncate(name, 15)
+                }
                 </h3>
-                <p className="flex items-center text-gray-500 text-xs mb-1">
-                    <FaPen className="text-green-400 mr-1" />{truncate(author, 12)}
+                <p className="flex items-center text-gray-500 font-semibold text-sm mb-1">
+                {
+                    truncate(author, 12)
+                }
                 </p>
             </div>
         </Link>
