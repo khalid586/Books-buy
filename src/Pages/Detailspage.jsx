@@ -42,7 +42,7 @@ function Detailspage() {
 }, []);
 
 
-  const style = { width: '100%', height: '500px', maxWidth: '600px' };
+  const style = { width: '400px', height: '400px' };
 
   // Navigation function
   const navigateToRentedBooks = () => {
@@ -86,10 +86,10 @@ function Detailspage() {
               </figure>
               <div className="card-body flex-1">
                 <div className="mb-4 flex gap-2">
-                  <span className={`text-xs px-4 py-2 rounded-full font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
+                  <span className={`text-xs px-2 py-1 rounded-full font-bold ${genre === 'Fiction' ? 'bg-violet-100 text-violet-700' : 'bg-orange-100 text-orange-500'}`}>
                     {genre}
                   </span>
-                  <span className={`text-xs border-2 rounded-full p-2 font-bold ${copies > 0 ? 'text-green-500 border-green-400' : 'text-red-500 border-red-400'}`}>
+                  <span className={`text-xs rounded-full py-1 px-2 font-bold ${copies > 0 ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'}`}>
                     {copies > 0 ? 'In stock' : 'Out of stock'}
                   </span>
                 </div>
